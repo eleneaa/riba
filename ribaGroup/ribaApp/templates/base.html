@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>РибаГруп</title>
+        <style>
+            nav ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            nav > ul > li {
+                position: relative;
+                display: inline-block;
+            }
+
+            nav ul ul {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 100%;
+                background-color: white; /* Для фона подменю */
+                border: 1px solid #ccc; /* Для границы подменю */
+            }
+
+            nav ul li:hover > ul {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="/">Главная</a></li>
+                    <li><a href="/portfolio/">Портфолио</a></li>
+                    <li>
+                        Услуги
+                        <ul>
+                            <li><a href="{% url 'Услуга' service_name='Котельное' %}">Котельное</a></li>
+                            <li><a href="{% url 'Услуга' service_name='Радиаторное' %}">Радиаторное</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer>
+            <p>2025 РибаГруп</p>
+        </footer>
+    </body>
+</html>
