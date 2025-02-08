@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -11,6 +12,7 @@ class Service(models.Model):
 
 
 class Work(models.Model):
+    date = models.DateTimeField(verbose_name="Дата и время выполнения заказа")
     place = models.CharField(max_length=100, verbose_name='Расположение объекта')
     square = models.FloatField(verbose_name="Площадь")
     cost_of_work = models.FloatField(verbose_name="Стоимость работ")
@@ -76,3 +78,8 @@ class Test(models.Model):
 
     def __str__(self):
         return f"Тест для {self.customer.name} - Площадь: {self.square} м²"
+
+
+class WorkPic(models.Model):
+    work_id = models.ForeignKey(to=Work, on_delete=models.SET_NULL, null=True, related_name='photos')
+    photo = models.ImageField(verbose_name="Фото объекта")

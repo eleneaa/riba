@@ -1,4 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/portfolio.css' %}">
+{% endblock %}
 {% block content %}
-    <h2>Тут будет портфолио</h2>
+    <div class="portfolio">
+        {% for work in works %}
+            <div class="work">
+                <div class="image-gallery">
+                    {% for photo in work.photos.all %}
+                        <div class="image-container {% if forloop.first %}active{% endif %}">
+                            <img src="{{ photo.photo.url }}" alt="Работа {{ work.place }} - Изображение {{ forloop.counter }}">
+                        </div>
+                    {% empty %}
+                        <div class="image-container">
+                            <p>Нет изображений для этой работы.</p>
+                        </div>
+                    {% endfor %}
+
+                    <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+                    <button class="next" onclick="changeImage(1)">&#10095;</button>
+
+                    <div class="overlay">
+                        <h3>{{ work.place }}</h3>
+                        <p>Стоимость материалов: {{ work.cost_of_materials }}</p>
+                        <p>Стоимость работы: {{ work.cost_of_work }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="{% static 'js/script_portfolio.js' %}"></script>
 {% endblock %}

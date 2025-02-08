@@ -1,40 +1,20 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="ru">
     <head>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% block extra_styles %}
+        {% endblock %}
         <meta charset="UTF-8">
         <title>РибаГруп</title>
-        <style>
-            nav ul {
-                list-style: none;
-                padding: 0;
-                margin: 0;
-            }
 
-            nav > ul > li {
-                position: relative;
-                display: inline-block;
-            }
-
-            nav ul ul {
-                display: none;
-                position: absolute;
-                left: 0;
-                top: 100%;
-                background-color: white; /* Для фона подменю */
-                border: 1px solid #ccc; /* Для границы подменю */
-            }
-
-            nav ul li:hover > ul {
-                display: block;
-            }
-        </style>
     </head>
     <body>
         <header>
             <nav>
                 <ul>
+                    <li><img src="{% static 'img/logo.png' %}" alt="Логотип"></li>
                     <li><a href="/">Главная</a></li>
-                    <li><a href="/portfolio/">Портфолио</a></li>
                     <li>
                         Услуги
                         <ul>
@@ -42,6 +22,7 @@
                             <li><a href="{% url 'Услуга' service_name='Радиаторное' %}">Радиаторное</a></li>
                         </ul>
                     </li>
+                    <li><a href="/portfolio/">Портфолио</a></li>
                 </ul>
             </nav>
         </header>

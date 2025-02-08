@@ -1,0 +1,102 @@
+.portfolio {
+    display: flex; /* Устанавливаем флекс-контейнер */
+    flex-wrap: wrap; /* Позволяет элементам переноситься на следующую строку */
+    justify-content: center; /* Центрируем элементы по горизонтали */
+}
+
+.work {
+    margin: 10px; /* Отступы между элементами для лучшего внешнего вида */
+    flex: 0 1 auto; /* Автоматическая ширина, но чтобы элементы не росли */
+}
+
+.image-gallery {
+    position: relative;
+    overflow: hidden; /* Скрывает неактивные изображения */
+    width: 613.6px; /* Устанавливаем фиксированную ширину галереи */
+    height: 506.85px; /* Устанавливаем фиксированную высоту галереи */
+    margin: auto; /* Центрирует галерею */
+}
+
+/* Контейнер для каждого изображения */
+.image-container {
+    display: none; /* Скрываем все изображения по умолчанию */
+    position: absolute; /* Размещаем элементы сверху друг на друга */
+    width: 100%; /* Занимает всю ширину контейнера галереи */
+    height: 100%; /* Занимает всю высоту контейнера галереи */
+}
+
+/* Показываем только активное изображение */
+.image-container.active {
+    display: block; /* Показываем только активное изображение */
+}
+
+/* Стили для изображений */
+.image-container img {
+    width: 100%; /* Изображения займут всю ширину контейнера */
+    height: 100%; /* Изображения займут всю высоту контейнера */
+    object-fit: cover; /* Сохраняет пропорции изображения и обрезает его */
+    border-radius: 40px; /* Закругленные углы для изображений */
+}
+
+/* Стили для кнопок переключения изображений */
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0);
+    color: white; /* Цвет текста */
+    border: solid;
+    border-color: white;
+    cursor: pointer; /* Указатель при наведении */
+    padding: 10px; /* Поля внутри кнопок */
+    z-index: 1; /* Чтобы кнопки были выше изображений */
+    border-radius: 40px; /* Закругленные углы кнопок */
+}
+
+/* Позиционирование кнопок */
+button.prev {
+    left: 10px; /* Положение кнопки "Назад" */
+}
+
+button.next {
+    right: 10px; /* Положение кнопки "Далее" */
+}
+
+/* Стили для текста, который будет над изображениями */
+.overlay {
+    border-radius: 0 0 40px 40px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px; /* Уменьшение вертикальных отступов */
+    text-align: left;
+    z-index: 2;
+}
+
+.overlay h3 {
+    margin: 10px; /* Убираем поля */
+    font-family: "Mulish", serif;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.overlay p {
+    margin: 0 0 0 10px; /* Убираем поля */
+    font-family: "Mulish", serif;
+    font-weight: 700;
+    font-size: 17px;
+}
+
+/* Специфические цвета фона для overlay для каждой работы */
+.work:nth-child(1) .overlay {
+    background-color: #556877; /* Первый цвет */
+}
+.work:nth-child(2) .overlay {
+    background-color: #2E3047; /* Второй цвет */
+}
+.work:nth-child(3) .overlay {
+    background-color: #A4887C; /* Третий цвет */
+}

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
-from .models import Service
+from .models import Service, Work
 
 
 def main(request):
@@ -9,7 +9,8 @@ def main(request):
 
 
 def portfolio(request):
-    return render(request, "portfolio.html")
+    works = Work.objects.all().order_by('-date').prefetch_related('photos')
+    return render(request, "portfolio.html", {"works": works})
 
 
 def service(request, service_name):
