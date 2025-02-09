@@ -1,4 +1,66 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+{% endblock %}
 {% block content %}
-    <h2>Хэллоу</h2>
+    <section class="header">
+        <div class="image-container">
+            <img src="{% static 'img/image_main.png' %}" >
+        </div>
+        <h1>Инженерные системы дома под ключ в Санкт-Петербурге и Ленинградской области</h1>
+        <h2>по индивидуальному или готовому проекту</h2>
+    </section>
+
+    <section class="advantages">
+        <div>
+            <h2>>6 лет</h2>
+            <p>мы работаем с лучшими фирмами производителей</p>
+        </div>
+
+        <div>
+            <h2>от 4 лет</h2>
+            <p>стаж наших опытных специалистов</p>
+        </div>
+
+        <div>
+            <h2>100%</h2>
+            <p>гарантия быстрого и качественного выполнения работ</p>
+        </div>
+    </section>
+
+    <section class="services">
+        <h2>Услуги</h2>
+        <p>
+            К нашим мастерам обращаются другие строительные организации за помощью, потому что мы изначально
+            начинали свой путь с устройства и монтажа инженерных систем.
+        </p>
+
+        <div class="services_container">
+            <div class="boiler">
+                <h2>Монтаж котельного оборудования</h2>
+                <a href="/service/Котельное/">Подробнее</a>
+                <img src="{% static 'img/kotelnoe.png' %}" >
+            </div>
+
+            <div class="radiator">
+                <h2>Радиаторное отопление</h2>
+                <a href="/service/Радиаторное/">Подробнее</a>
+                <img src="{% static 'img/radiator.png' %}" >
+            </div>
+
+            <div class="water">
+                <h2>Внутреннее водоснабжение</h2>
+                <a href="/service/Водоснабжение/">Подробнее</a>
+                <img src="{% static 'img/water.png' %}" >
+            </div>
+
+            <div class="floor">
+                <h2>Водяной теплый пол</h2>
+                <a href="/service/ТеплыйПол/">Подробнее</a>
+                <img src="{% static 'img/floor.png' %}" >
+            </div>
+        </div>
+    </section>
+
 {% endblock %}

@@ -1,50 +1,65 @@
+body {
+    background-color: #D9D9D9; /* Цвет фона страницы */
+}
+
+nav {
+    text-align: center; /* Выравнивание текста в навигации по центру */
+}
+
 nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+    list-style: none; /* Убираем маркеры списка */
+    padding: 0; /* Убираем отступы */
+    margin: 0; /* Убираем внешние отступы */
 }
 
 nav > ul > li {
-    position: relative;
-    display: inline-block;
+    position: relative; /* Устанавливаем относительное позиционирование для родителя */
+    display: inline-block; /* Позиционируем элементы списка в ряд */
+    margin: 30px; /* Внешние отступы для элементов списка */
+    font-family: "Mulish", serif; /* Шрифт для текста */
+    font-weight: medium; /* Начертание шрифта */
+    font-size: 30px; /* Размер шрифта */
 }
 
 nav ul ul {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 100%;
-    z-index: 3;
-    background-color: white; /* Для фона подменю */
-    border: 1px solid #ccc; /* Для границы подменю */
+    display: none; /* Скрываем вложенное меню по умолчанию */
+    position: absolute; /* Абсолютное позиционирование для вложенного меню */
+    left: 0; /* Выравнивание по левому краю */
+    top: 100%; /* Сдвигаем вниз для абсолютного позиционирования */
+    z-index: 3; /* Устанавливаем уровень слоя для подменю */
+    background-color: white; /* Цвет фона подменю */
+    border: 1px solid #ccc; /* Граница подменю */
 }
 
 nav ul li:hover > ul {
-    display: block;
+    display: block; /* Показываем подменю при наведении на элемент */
 }
 
-li{
-    margin: 30px;
-    font-family: "Mulish", serif;
-    font-weight: medium;
-    font-size: 30px;
+nav ul li:hover {
+    background-color: #2E3047; /* Цвет фона для пункта меню при наведении */
 }
 
-nav{
-    text-align: center;
-
+nav ul li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: black; /* Цвет текста ссылки */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета текста */
+    padding: 5px 10px; /* Добавляем пространство вокруг текста */
 }
 
-img {
-    width: 90px;  /* Задает ширину изображения */
-    height: 90px;
+nav ul li:hover > a {
+    background-color: transparent; /* Фон ссылки при наведении на элемент */
+    color: white; /* Цвет текста ссылки при наведении */
 }
 
-a {
-    text-decoration: none;
-    color: black;
+nav ul li:hover {
+    color: white; /* Цвет текста пункта меню при наведении */
 }
 
-body{
-    background-color: #D9D9D9;
+nav a:hover {
+    color: white; /* Цвет текста при наведении на ссылку */
+}
+
+.logo{
+    width: 90px; /* Задает ширину изображения */
+    height: 90px; /* Задает высоту изображения */
 }
