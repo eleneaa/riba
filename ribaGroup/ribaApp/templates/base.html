@@ -18,8 +18,10 @@
                     <li>
                         Услуги
                         <ul>
-                            <li><a href="{% url 'Услуга' service_name='Котельное' %}">Котельное</a></li>
-                            <li><a href="{% url 'Услуга' service_name='Радиаторное' %}">Радиаторное</a></li>
+                            <li><a href="{% url 'Услуга' service_name='montazh_kotelnogo_oborudovaniya' %}">Котельное оборудование</a></li>
+                            <li><a href="{% url 'Услуга' service_name='radiatornoe_otoplenie' %}">Радиаторное отопление</a></li>
+                            <li><a href="{% url 'Услуга' service_name='vodyanoy_teplyy_pol' %}">Водяной теплый пол</a></li>
+                            <li><a href="{% url 'Услуга' service_name='vnutrennee_vodosnabzhenie' %}">Внутреннее водоснабжение</a></li>
                         </ul>
                     </li>
                     <li><a href="/portfolio/">Портфолио</a></li>
@@ -30,7 +32,15 @@
             {% block content %}{% endblock %}
         </main>
         <footer>
-            <p>2025 РибаГруп</p>
+            <div class="content">
+            <a href="tel:79119967595">+7 911 996 75 95</a>
+                <br>
+            <a href="mailto:ribagroup@yandex.ru">ribagroup@yandex.ru</a>
+            <p>ИП Пупа Шлюпа</p>
+            <p>1293824897959348</p>
+                </div>
+
+            <img src="{% static 'img/logoW.png' %}" alt="Логотип" class="logof">
         </footer>
     </body>
 </html>

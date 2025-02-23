@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="12327752-f4f6-43fa-8c3f-f1b8f45770e7" name="Changes" comment="portfolio and css">
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/floor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/image_main.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/kotelnoe.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/radiator.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/water.png" afterDir="false" />
+    <list default="true" id="12327752-f4f6-43fa-8c3f-f1b8f45770e7" name="Changes" comment="main page">
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/style_service.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/logoW.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/tg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/img/wa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/js/gallery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/js/services.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ribaGroup/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/service.html" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/templates/service.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaApp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaApp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/ribaGroup/ribaGroup/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -36,9 +43,9 @@
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="5" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2sd3ntcHo11svVLHJClnTkqL9Ex" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -47,15 +54,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Пользователь/Desktop/PythonProject&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Пользователь\PycharmProjects\ribaGroup\ribaGroup\ribaGroup\static\img" />
@@ -105,13 +113,22 @@
       <option name="project" value="LOCAL" />
       <updated>1739055135644</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="main page">
+      <option name="closed" value="true" />
+      <created>1739137372363</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739137372364</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial" />
     <MESSAGE value="base" />
     <MESSAGE value="portfolio and css" />
-    <option name="LAST_COMMIT_MESSAGE" value="portfolio and css" />
+    <MESSAGE value="main page" />
+    <option name="LAST_COMMIT_MESSAGE" value="main page" />
   </component>
 </project>

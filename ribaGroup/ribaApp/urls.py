@@ -6,5 +6,5 @@ from . import views
 urlpatterns = [
     path("", views.main, name="Главная"),
     path("portfolio/", views.portfolio, name="Портфолио"),
-    path("service/<str:service_name>/", views.service, name="Услуга")
+    path("service/<str:service_name>/", views.service, name="Услуга"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

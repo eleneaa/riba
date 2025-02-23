@@ -1,4 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block extra_styles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_service.css' %}">
+{% endblock %}
 {% block content %}
-    <h2>Тут будет про услугу: {{ service_name }}</h2>
+        <h1>{{ service.name }}</h1>
+        <section class="header">
+            <div class="image-container">
+                <img src="{{ service.main_photo.url }}" alt="{{ service.name }}">
+            </div>
+            <p>{{ service.description }}</p>
+        </section>
+
+        <section class="advantages">
+            <h2>Преимущества:</h2>
+            <ul>
+                {% for key, value in advantages.items %}
+                    <li><strong>{{ key }}</strong>: {{ value }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <section class="test-form">
+            <h2>Получите предварительный расчет стоимости по вашим параметрам дома и
+                <span class="discount">получите скидку</span> <span class="proc">20%</span></h2>
+            <div class="form">
+            {% if form_completed %}
+                <h2>Форма успешно отправлена!</h2>
+                <p>Спасибо за ваши данные. Мы свяжемся с вами в ближайшее время.</p>
+            {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Далее</button>
+            </form>
+            {% endif %}
+                </div>
+        </section>
+
+        <p class="bottom">{{ service.description_bottom }}</p>
+
 {% endblock %}

@@ -1,0 +1,146 @@
+body {
+    margin: 0;
+    /* Убираем отступы у body */
+}
+
+h1 {
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 32px;
+    color: #2E3047;
+    padding-left: 30px;
+}
+
+.image-container {
+    position: relative; /* Делаем позиционирование для контейнера */
+    margin-left: 0; /* Сдвигаем контейнер к левому краю */
+    padding: 0;
+    height: 400px; /* Уменьшаем высоту контейнера */
+    width: 100%;
+}
+
+.image-container img {
+    width: 914px; /* Уменьшаем ширину изображения */
+    height: 300px; /* Уменьшаем высоту изображения */
+    display: block;
+    object-fit: cover;/* Убираем пробелы под изображением */
+}
+
+.image-container::after {
+    content: ''; /* Обязательный контент для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: -40px; /* Начало псевдоэлемента от верхней границы контейнера */
+    right: 0; /* Позиционируем псевдоэлемент к правому краю контейнера */
+    width: 670px; /* Уменьшаем ширину размытия */
+    height: 400px; /* Уменьшаем высоту псевдоэлемента */
+    background: #D9D9D9; /* Цвет фона для размытия */
+    filter: blur(18px); /* Уменьшаем значение размытия */
+    pointer-events: none; /* Игнорируем клики на псевдоэлемент */
+    z-index: 1; /* Задаем уровень слоя псевдоэлемента */
+}
+
+.header p {
+    position: absolute; /* Абсолютное позиционирование заголовков */
+    z-index: 2; /* Устанавливаем более высокий уровень, чем у псевдоэлемента */
+    color: #2E3047; /* Цвет текста заголовков */
+    text-align: left; /* Центрируем текст */
+    left: 76%; /* Центральное выравнивание по горизонтали */
+    transform: translateX(-45%);
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Уменьшаем размер шрифта */
+    top: 32%; /* Отодвигаем заголовок h1 от верхней границы контейнера */
+    width: 420px; /* Уменьшаем ширину */
+}
+
+.advantages h2 {
+    padding-left: 50px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Размер шрифта заголовка */
+    margin-bottom: 20px;
+}
+
+
+.test-form h2 {
+    padding-left: 30px;
+    width: 1140px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 34px;
+}
+
+.discount {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 34px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+.proc {
+    font-family: "Georgia", serif;
+    font-weight: 700;
+    font-size: 40px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+.choices {
+    display: flex;
+    flex-wrap: wrap; /* Перенос строк для кнопок, если их много */
+    gap: 15px;     /* Пространство между элементами */
+    margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Индивидуальный стиль для каждого варианта (метка) */
+.radio-label {
+    flex: 1 1 40%; /* Автоматическая ширина кнопок: 40% от контейнера, адаптивно */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    background-color: #eaeaea; /* Серый фон по умолчанию кнопок */
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавные изменения при наведении/выборе */
+}
+
+/* Скрываем настоящую радиокнопку */
+.radio-label input[type="radio"] {
+    display: none;
+}
+
+/* Внешний вид выбрано */
+.radio-label input[type="radio"]:checked + .choice {
+    background-color: #3498db; /* Синий фон для выбранного варианта */
+    color: white; /* Белый цвет текста в выбранном */
+    border-color: #3498db;
+}
+
+/* Наведение (hover) */
+.radio-label:hover {
+    background-color: #f0f0f0; /* Светлый фон при наведении */
+    border-color: #ccc;
+}
+
+/* Кнопка отправки */
+.test-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.test-form button[type="submit"]:hover {
+    background-color: #2980b9; /* Темнее цвет фона при наведении */
+}

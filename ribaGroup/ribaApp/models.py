@@ -3,8 +3,10 @@ from django.db import models
 
 
 class Service(models.Model):
+    url_title = models.CharField(max_length=100, verbose_name='Название услуги для ссылки')
     name = models.CharField(max_length=100, verbose_name='Название услуги')
-    description = models.CharField(max_length=500, verbose_name="Краткое описание для карточки")
+    description = models.CharField(max_length=500, verbose_name="Краткое описание для карточки рядом с картинкой")
+    description_bottom = models.CharField(max_length=500, verbose_name="Краткое описание для карточки внизу")
     main_photo = models.ImageField(verbose_name="Главное фото карточки")
 
     def __str__(self):
@@ -74,10 +76,14 @@ class Test(models.Model):
     heating = models.CharField(max_length=50, choices=HEATING_CHOICES)
     boiler_type = models.CharField(max_length=50, choices=BOILER_TYPE_CHOICES)
 
-    customer = models.ForeignKey(to=Customer, on_delete=models.SET_NULL, null=True, related_name='tests')
+    customer_name = models.CharField(max_length=100, verbose_name="Имя заказчика")
+    customer_number = models.CharField(max_length=15, verbose_name="Номер телефона")
 
     def __str__(self):
-        return f"Тест для {self.customer.name} - Площадь: {self.square} м²"
+        return f"Тест для {self.customer_name} - Площадь: {self.square} м²"
+
+    def is_complete(self):
+        return all([self.water_supply_sewage, self.square, self.project, self.floors, self.heating, self.boiler_type])
 
 
 class WorkPic(models.Model):

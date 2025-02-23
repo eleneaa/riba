@@ -21,7 +21,7 @@ body {
     position: absolute; /* Абсолютное позиционирование */
     top: -16px; /* Начало псевдоэлемента от верхней границы контейнера */
     right: 0; /* Позиционируем псевдоэлемент к правому краю контейнера */
-    width: 640px; /* Уменьшаем ширину размытия */
+    width: 700px; /* Уменьшаем ширину размытия */
     height: 460px; /* Уменьшаем высоту псевдоэлемента */
     background: #D9D9D9; /* Цвет фона для размытия */
     filter: blur(12px); /* Уменьшаем значение размытия */
@@ -54,13 +54,13 @@ body {
     font-size: 26px; /* Уменьшаем размер шрифта */
     font-style: italic;
     top: 45%; /* Отодвигаем заголовок h2 ниже h1 */
-    padding: 0;
+    padding-left: 20px;
     margin: 0;
 }
 
 .advantages {
     width: 972px; /* Уменьшаем ширину секции */
-    margin: 40px auto;
+    margin: 60px auto;
     display: flex; /* Используем flexbox для горизонтального расположения */
     justify-content: space-between; /* Распределяем пространство между элементами */
     align-items: flex-start; /* Выравниваем элементы по вертикали */
@@ -89,82 +89,261 @@ body {
     font-size: 20px; /* Уменьшаем размер шрифта параграфов */
 }
 
+/* Основные стили секции */
 .services {
-    text-align: center; /* Центрируем текст */
-    margin: 40px; /* Отступы сверху и снизу */
+    margin: 0;
+    padding: 0; /* Отступы вокруг секции */
+    text-align: left; /* Центрируем текст внутри секции */
 }
 
+/* Заголовок секции */
 .services h2 {
-    color: #2E3047; /* Цвет заголовка услуг */
+    padding-left: 50px;
+    color: #2E3047;
     font-family: "Mulish", serif;
     font-weight: ExtraBold;
-    font-size: 3rem; /* Размер шрифта заголовка */
+    font-size: 36px; /* Размер шрифта заголовка */
     margin-bottom: 20px; /* Отступ снизу */
+
 }
 
+/* Параграф секции */
 .services p {
-    color: #2E3047; /* Цвет абзаца */
+    padding: 0 50px;
     font-family: "Mulish", serif;
-    font-weight: 400;
-    font-size: 1.2rem; /* Размер шрифта параграфа */
+    font-weight: Medium;
+    font-size: 20px; /* Размер шрифта параграфа */
+    margin-bottom: 40px; /* Отступ снизу */
+    color: #2E3047; /* Цвет текста */
 }
 
+/* Контейнер для карточек услуг */
 .services_container {
-    display: flex; /* Используем flexbox */
-    flex-wrap: wrap; /* Позволяем элементам переходить на новую строку */
-    justify-content: space-between; /* Распределяем пространство между элементами */
+    display: flex; /* Используем flexbox для размещения карточек */
+    justify-content: center; /* Центрируем карточки по главной оси */
+    flex-wrap: wrap; /* Позволяем карточкам переноситься на следующую строку */
+    gap: 20px; /* Пробел между карточками */
 }
 
-.services_container div {
-    width: calc(50% - 10px); /* Ширина элемента 50% минус отступ */
-    margin-bottom: 20px; /* Отступ снизу между строками */
-    position: relative; /* Позволяем размещать текст поверх изображения */
-    border-radius: 10px; /* Радиус границы для скругления углов */
-    overflow: hidden; /* Скрываем избыточную часть */
+/* Стили для карточек услуг */
+.service_card {
+    display: flex;
+    flex-direction: column; /* Расположение элементов внутри карточки вертикально */
+    align-items: left; /* Центрируем содержимое карточки */
+    justify-content: space-between; /* Распределяем пространство между элементами карточки */
+    width: 270px; /* Ширина карточки, можно адаптировать */
+    border-radius: 40px; /* Скругленные углы */
+    padding: 0; /* Отступы внутри карточки */
+    position: relative; /* Для настройки позиционирования дочерних элементов */
 }
 
-.services_container img {
-    width: 100%; /* Ширина изображения на 100% */
-    height: auto; /* Высота автоматически */
-    display: block; /* Блок для изображения */
+.service_card.active {
+    z-index: 1; /* Поднимаем карточку */
 }
 
-.services_container h2 {
-    color: #D9D9D9; /* Цвет текста */
+/* Эффект уменьшения для остальных карточек */
+.service_card:not(.active) {
+    transform: scale(0.95); /* Уменьшаем неактивные карточки */
+}
+
+/* Эффект уменьшения для остальных карточек */
+.service_card.inactive {
+    transform: scale(0.75); /* Уменьшаем неактивные карточки */
+}
+
+/* Стили для каждой карточки с уникальными фоновыми цветами */
+.service_card.boiler {
+    background-color: #556877; /* Цвет фона для монтаж котельного оборудования */
+    width: 673px;
+}
+
+.service_card.radiator {
+    background-color: #A4887C; /* Цвет фона для радиаторного отопления */
+    width: 484px;
+}
+
+.service_card.water {
+    background-color: #2E3047; /* Цвет фона для внутреннего водоснабжения */
+    width: 589px;
+}
+
+.service_card.floor {
+    background-color: #757C80; /* Цвет фона для водяного теплого пола */
+    width: 578px;
+}
+
+/* Стили для заголовков карточек */
+.service_card h3 {
+    color: #D9D9D9;
+    align-text: left;
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 32px; /* Размер шрифта заголовка карточки */
+    margin: 20px 0 0 20px;
+    width: 70%;
+}
+
+/* Стили для ссылок "Подробнее" */
+.service_link {
+    align-text: right;
+    color: #2E3047;
+    background-color: #D9D9D9; /* Цвет текста ссылки */
+    text-decoration: none; /* Убираем подчеркивание */
+    margin: 10px 0 0 20px; /* Отступ сверху для ссылки */
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 24px;
+    border-radius: 40px;
+    padding: 10px;
+    width: auto;
+    max-width: 140px;
+}
+
+/* Эффект наведения на ссылки */
+.service_link:hover {
+    text-decoration: underline; /* Подчеркиваем текст при наведении */
+}
+
+/* Стили для изображений внутри карточек */
+.service_card img {
+    width: 100%; /* Задаем ширину изображения 100% от родительской карточки */
+    height: auto; /* Высота будет автоматической */
+    border-radius: 0 0 40px 40px; /* Скругление углов изображений */
+    margin-top: 10px; /* Отступ сверху для изображения */
+    object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
+    max-height: 200px; /* Ограничиваем максимальную высоту изображения, можно устанавливать по вашему усмотрению */
+}
+
+
+.gallery-container {
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    overflow: hidden; /* Убираем полосы прокрутки */
+}
+
+.image-title {
     position: absolute; /* Абсолютное позиционирование */
-    top: 0px; /* Отступ от верхней части */
+    bottom: 10px; /* Отступ от нижней части изображения */
     left: 50%; /* Центрируем по горизонтали */
-    transform: translateX(-50%); /* Сдвигаем влево на 50% ширины элемента */
-    z-index: 1; /* Порядок наложения, чтобы текст был сверху */
-    font-size: 1.5rem; /* Размер шрифта заголовка внутри блока */
-    padding: 30px; /* Отступы вокруг текста */
-    border-radius: 5px; /* Скругление углов фона текста */
-    width: 100%; /* Ширина фона 70% от родительского блока */
-    height: 271px;
-    text-align: left; /* Центрируем текст внутри блока */
+    transform: translateX(-50%); /* Центрируем текст */
+    color: white; /* Цвет текста */
+    padding: 5px 10px; /* Отступ вокруг текста */
+    border-radius: 5px; /* Закругленные углы фона */
+    font-family: "Mulish", serif;
+    font-weight: SemiBold;
+    font-size: 24px; /* Размер шрифта */
+    text-align: center; /* Центрируем текст внутри блока */
+    z-index: 5; /* Убедитесь, что текст выше изображения */
 }
 
-.services_container a {
-    position: absolute; /* Абсолютное позиционирование ссылки */
-    top: 60px; /* Отступ от верхней части (по желанию) */
-    right: 10px; /* Отступ от правой стороны */
-    z-index: 1; /* Порядок наложения */
-    color: #D9D9D9; /* Цвет ссылки */
-    text-decoration: underline; /* Подчеркнутая ссылка */
+.gallery {
+    position: relative; /* Позволяет абсолютному позиционированию стрелок */
+    width: 776px; /* Ширина основного изображения */
+    height: 533px; /* Высота основного изображения */
+    display: flex; /* Используем flexbox для выравнивания */
+    justify-content: center; /* Центрируем элементы по горизонтали */
+    align-items: center; /* Центрируем элементы по вертикали */
 }
 
-.boiler h2 {
-    background-color: #556877; /* Полупрозрачный цвет для блока */
+/* Стиль для основного изображения */
+#currentImage {
+    width: 776px; /* Ширина основного изображения */
+    height: 533px; /* Высота основного изображения */
+    object-fit: cover; /* Обрезаем изображение, чтобы вписать в размеры контейнера */
+    z-index: 1; /* Основное изображение на переднем плане */
 }
 
-.radiator h2 {
-    background-color: #A4887C; /* Полупрозрачный цвет для блока */
+/* Полосы размытых изображений */
+.blurred-image {
+    position: absolute; /* Абсолютное позиционирование для боковых изображений */
+    top: 0; /* Верхнее выравнивание */
+    width: calc(100% + 100px); /* Увеличенная ширина для эффекта размытости */
+    height: 100%; /* Высота 100% от родителя */
+    filter: blur(5px) saturate(0.1); /* Применяем размытие */
+    object-fit: cover; /* Обеспечиваем корректное вписывание изображений */
+    z-index: 0; /* Размытие на заднем плане */
 }
 
-.water h2 {
-    background-color: #2E3047; /* Полупрозрачный цвет для блока */
+/* Расположение размытых изображений */
+.previous {
+    left: -120%; /* Смещение влево, чтобы было видно слева */
 }
 
-.floor h2 {
-    background-color: #757C80; /* Полупрозрачный цвет для блока */
+.next {
+    right: -120%; /* Смещение вправо, чтобы было видно справа */
 }
+
+.arrow {
+    position: absolute; /* Абсолютное позиционирование */
+    top: 90%; /* Устанавливаем по центру по вертикали */
+    transform: translateY(-50%); /* Центрируем по вертикали */
+    background-color: transparent; /* Прозрачный фон */
+    border: 4px solid white; /* Белая обводка */
+    border-radius: 50%; /* Делаем кнопки круглыми */
+    width: 40px; /* Ширина кнопок */
+    height: 40px; /* Высота кнопок */
+    display: flex; /* Flexbox для центрирования содержимого */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    cursor: pointer; /* Изменение курсора на указатель */
+    color: white;
+    z-index: 10; /* Помещаем стрелки на передний план */
+}
+
+.left-arrow {
+    left: 15px; /* Смещаем на 10 пикселей от левого края */
+}
+
+.right-arrow {
+    right: 15px; /* Смещаем на 10 пикселей от правого края */
+}
+
+.works h2 {
+    padding-left: 50px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.call-me-please {
+    padding-left: 50px;
+    margin-right: 500px;
+}
+
+.call-me-please h2 {
+    color: #2E3047;
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 38px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+.call-me-please p {
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: Medium;
+    font-size: 24px;
+    margin-bottom: 0;
+}
+
+.tel {
+    color: #D9D9D9;
+    background-color: #2E3047;
+    border-radius: 29px;
+    font-family: "Mulish", serif;
+    font-weight: SemiBold;
+    font-size: 30px;
+    text-decoration: none;
+}
+
+.call-me-please a {
+    margin-top: 40px;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+

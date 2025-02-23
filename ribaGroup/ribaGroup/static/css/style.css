@@ -63,3 +63,34 @@ nav a:hover {
     width: 90px; /* Задает ширину изображения */
     height: 90px; /* Задает высоту изображения */
 }
+
+footer {
+    display: flex; /* Устанавливаем флекс-контейнер */
+    justify-content: space-between; /* Разделяем контент и лого */
+    align-items: center; /* Выравниваем по центру по вертикали */
+    padding: 10px 20px; /* Добавляем отступы для футера, по необходимости */
+    background-color:  #2E3047; /* Пример фона, можете настроить по своему усмотрению */
+}
+
+.content a {
+    font-family: "Mulish", serif;
+    font-weight: SemiBold;
+    font-size: 26px;
+    color: #D9D9D9;
+    text-decoration: none;
+}
+
+.content p {
+    font-family: "Mulish", serif;
+    font-weight: SemiBold;
+    font-size: 18px;
+    color: #6F8A9F;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logof {
+    width: 100px; /* Пример ширины логотипа, настройте под свои нужды */
+    height: 140px; /* Сохраняем пропорции изображения */
+}

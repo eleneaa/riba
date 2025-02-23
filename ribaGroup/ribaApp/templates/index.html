@@ -29,38 +29,104 @@
         </div>
     </section>
 
-    <section class="services">
-        <h2>Услуги</h2>
-        <p>
-            К нашим мастерам обращаются другие строительные организации за помощью, потому что мы изначально
-            начинали свой путь с устройства и монтажа инженерных систем.
-        </p>
+<section class="services">
+    <h2>Услуги</h2>
+    <p>
+        К нашим мастерам обращаются другие строительные организации за помощью, потому что мы изначально
+        начинали свой путь с устройства и монтажа инженерных систем.
+    </p>
 
-        <div class="services_container">
-            <div class="boiler">
-                <h2>Монтаж котельного оборудования</h2>
-                <a href="/service/Котельное/">Подробнее</a>
-                <img src="{% static 'img/kotelnoe.png' %}" >
-            </div>
-
-            <div class="radiator">
-                <h2>Радиаторное отопление</h2>
-                <a href="/service/Радиаторное/">Подробнее</a>
-                <img src="{% static 'img/radiator.png' %}" >
-            </div>
-
-            <div class="water">
-                <h2>Внутреннее водоснабжение</h2>
-                <a href="/service/Водоснабжение/">Подробнее</a>
-                <img src="{% static 'img/water.png' %}" >
-            </div>
-
-            <div class="floor">
-                <h2>Водяной теплый пол</h2>
-                <a href="/service/ТеплыйПол/">Подробнее</a>
-                <img src="{% static 'img/floor.png' %}" >
-            </div>
+    <div class="services_container">
+        <!-- Карточка 1 -->
+        <div class="service_card boiler" data-scale="1.2">
+            <h3>Монтаж котельного оборудования</h3>
+            <a href="/service/montazh_kotelnogo_oborudovaniya/" class="service_link">Подробнее</a>
+            <img src="{% static 'img/kotelnoe.png' %}" alt="Монтаж котельного оборудования">
         </div>
-    </section>
+
+        <!-- Карточка 2 -->
+        <div class="service_card radiator" data-scale="1.2">
+            <h3>Радиаторное отопление</h3>
+            <a href="/service/radiatornoe_otoplenie/" class="service_link">Подробнее</a>
+            <img src="{% static 'img/radiator.png' %}" alt="Радиаторное отопление">
+        </div>
+
+        <!-- Карточка 3 -->
+        <div class="service_card water" data-scale="1.2">
+            <h3>Внутреннее водоснабжение</h3>
+            <a href="/service/vnutrennee_vodosnabzhenie/" class="service_link">Подробнее</a>
+            <img src="{% static 'img/water.png' %}" alt="Внутреннее водоснабжение">
+        </div>
+
+        <!-- Карточка 4 -->
+        <div class="service_card floor" data-scale="1.2">
+            <h3>Водяной теплый пол</h3>
+            <a href="/service/vodyanoy_teplyy_pol/" class="service_link">Подробнее</a>
+            <img src="{% static 'img/floor.png' %}" alt="Водяной теплый пол">
+        </div>
+    </div>
+</section>
+
+<section class="call-me-please">
+    <h2>Будем откровенны:</h2>
+    <p>Для расчета стоимости монтажа водяного теплого пола и сопутствующих коммуникаций нужно подготовить техническое
+        задание и выбрать необходимые материалы и оборудование.</p>
+    <br>
+    <p>Начнем наше общение в мессенджерах или по телефону – это простое и удобное решение!</p>
+
+    <br>
+    <a class="tel" href="tel:79119967595">+7 911 996 75 95</a>
+    <a href="https://api.whatsapp.com/send?phone=79119967595"><img src="{% static 'img/wa.png' %}"></a>
+    <a href="https://t.me/RIBAGroupp"><img src="{% static 'img/tg.png' %}"></a>
+
+</section>
+
+<section class="works">
+<h2>Наши работы</h2>
+<div class="gallery-container">
+    <div class="gallery">
+        <img class="blurred-image previous" src="{{ images.previous.photo.url }}" alt="">
+        <img id="currentImage" src="{{ images.0.photo.url }}" alt="">
+        <img class="blurred-image next" src="{{ images.next.photo.url }}" alt="">
+
+        <div class="image-title">{{ images.0.work_id.place }}</div> <!-- Поправка здесь -->
+
+        <button class="arrow left-arrow" onclick="changeImage(-1)">&#10094;</button>
+        <button class="arrow right-arrow" onclick="changeImage(1)">&#10095;</button>
+    </div>
+</div>
+</section>
+<script>
+let images = [
+    {% for image in images %}
+        {
+            url: "{{ image.photo.url }}",
+            place: "{{ image.work_id.place }}" // Убедитесь, что здесь доступно поле `place`
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+];
+
+let currentIndex = 0; // Индекс текущего изображения
+
+function changeImage(direction) {
+    currentIndex = (currentIndex + direction + images.length) % images.length; // Обновляем индекс изображений
+    document.getElementById('currentImage').src = images[currentIndex].url; // Меняем текущее изображение
+    document.querySelector('.image-title').textContent = images[currentIndex].place; // Обновляем название места
+
+    // Обновляем размытые изображения
+    let previousIndex = (currentIndex - 1 + images.length) % images.length;
+    let nextIndex = (currentIndex + 1) % images.length;
+
+    document.querySelector('.blurred-image.previous').src = images[previousIndex].url;
+    document.querySelector('.blurred-image.next').src = images[nextIndex].url;
+}
+
+window.onload = () => {
+    // Начальная настройка размытых изображений
+    document.querySelector('.blurred-image.previous').src = images[(currentIndex - 1 + images.length) % images.length].url;
+    document.querySelector('.blurred-image.next').src = images[(currentIndex + 1) % images.length].url;
+    document.querySelector('.image-title').textContent = images[currentIndex].place; // Устанавливаем название места на начальной загрузке
+};
+</script>
 
 {% endblock %}
