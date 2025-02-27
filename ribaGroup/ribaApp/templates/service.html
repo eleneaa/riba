@@ -1,43 +1,109 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block extra_styles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style_service.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/style_service.css' %}">
 {% endblock %}
+
 {% block content %}
-        <h1>{{ service.name }}</h1>
-        <section class="header">
-            <div class="image-container">
-                <img src="{{ service.main_photo.url }}" alt="{{ service.name }}">
+<h1>{{ service.name }}</h1>
+
+<section class="header">
+    <div class="image-container">
+        <img src="{{ service.main_photo.url }}" alt="{{ service.name }}">
+    </div>
+    <p>{{ service.description }}</p>
+</section>
+
+<section class="advantages">
+    <h2>Преимущества:</h2>
+    <ul>
+        {% for key, value in advantages.items %}
+        <li>
+            <strong>{{ key }}</strong>: {{ value }}
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+
+<section class="test-form">
+    {% if stage == 'questions' %}
+    <h2 class="form-title">Ответьте на вопросы:</h2>
+    <form method="post" class="questions-form">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+                <p class="question-text">{{ field.label }}</p> <!-- Текст вопроса -->
+
+                {% if field.field.widget.input_type == 'radio' %}
+                    <!-- Рендеринг радиокнопок -->
+                    {% for choice in field.field.choices %}
+                        <div class="choice-group">
+                            <input type="radio"
+                                   id="{{ field.name }}_{{ forloop.counter }}"
+                                   name="{{ field.name }}"
+                                   value="{{ choice.0 }}"
+                                   class="choice-input">
+                            <label for="{{ field.name }}_{{ forloop.counter }}" class="choice-label">
+                                {{ choice.1 }}
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                {% elif field.field.widget.input_type == 'select' %}
+                    <!-- Рендеринг выпадающего списка -->
+                    <select name="{{ field.name }}" id="{{ field.id_for_label }}" class="form-input">
+                        {% for choice in field.field.choices %}
+                            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+                        {% endfor %}
+                    </select>
+
+                {% elif field.field.widget.input_type == 'checkbox' %}
+                    <!-- Рендеринг чекбоксов -->
+                    {% for choice in field.field.choices %}
+                        <div class="checkbox-group">
+                            <input type="checkbox"
+                                   id="{{ field.name }}_{{ forloop.counter }}"
+                                   name="{{ field.name }}"
+                                   value="{{ choice.0 }}"
+                                   class="checkbox-input">
+                            <label for="{{ field.name }}_{{ forloop.counter }}" class="checkbox-label">
+                                {{ choice.1 }} <!-- Вариант ответа -->
+                            </label>
+                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <!-- Рендеринг текстовых полей, текстовых областей и других типов -->
+                    {{ field }}
+                {% endif %}
             </div>
-            <p>{{ service.description }}</p>
-        </section>
+        {% endfor %}
+        <button type="submit" class="form-submit">Далее</button>
+    </form>
 
-        <section class="advantages">
-            <h2>Преимущества:</h2>
-            <ul>
-                {% for key, value in advantages.items %}
-                    <li><strong>{{ key }}</strong>: {{ value }}</li>
-                {% endfor %}
-            </ul>
-        </section>
+    {% elif stage == 'contact' %}
+    <h2 class="form-title">Ваши контактные данные:</h2>
+    <form method="post" class="contact-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name" class="form-label">Имя</label>
+            <input type="text" id="name" name="name" class="form-input">
+        </div>
+        <div class="form-group">
+            <label for="phone" class="form-label">Номер телефона</label>
+            <input type="tel" id="phone" name="phone" class="form-input">
+        </div>
+        <button type="submit" class="form-submit">Отправить</button>
+    </form>
 
-        <section class="test-form">
-            <h2>Получите предварительный расчет стоимости по вашим параметрам дома и
-                <span class="discount">получите скидку</span> <span class="proc">20%</span></h2>
-            <div class="form">
-            {% if form_completed %}
-                <h2>Форма успешно отправлена!</h2>
-                <p>Спасибо за ваши данные. Мы свяжемся с вами в ближайшее время.</p>
-            {% else %}
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Далее</button>
-            </form>
-            {% endif %}
-                </div>
-        </section>
-
-        <p class="bottom">{{ service.description_bottom }}</p>
-
+    {% elif stage == 'completed' %}
+    <h2 class="completion-message">Спасибо, мы с вами свяжемся!</h2>
+    <form action="{% url 'Услуга' service_name=service.url_title %}" class="restart-form">
+        <button type="submit" class="form-submit">Пройти тест снова</button>
+    </form>
+    {% endif %}
+</section>
 {% endblock %}
+

@@ -32,60 +32,82 @@ class Customer(models.Model):
         return self.name
 
 
-class Order(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время создания заказа")
-    customer = models.ForeignKey(to=Customer, on_delete=models.SET_NULL, null=True, related_name='orders')
-    estimate = models.BooleanField(verbose_name="Сформирована смета?")
-    contract = models.BooleanField(verbose_name="Заключен договор по заказу?")
-    test = models.ForeignKey(to='Test', on_delete=models.SET_NULL, null=True, related_name='orders')
+# models.py
+class Question(models.Model):
+    text = models.CharField(max_length=255, verbose_name="Текст вопроса")
+
+    MULTIPLE_CHOICE = 'MC'
+    SINGLE_CHOICE = 'SC'
+    OPEN = 'O'
+    QUESTION_TYPE_CHOICES = [
+        (MULTIPLE_CHOICE, 'Несколько вариантов'),
+        (SINGLE_CHOICE, 'Один вариант'),
+        (OPEN, 'Открытый ответ')
+    ]
+
+    question_type = models.CharField(
+        max_length=2,
+        choices=QUESTION_TYPE_CHOICES,
+        default=SINGLE_CHOICE,
+        verbose_name="Тип вопроса"
+    )
+
+    # Новое поле для валидации типа открытых ответов
+    EXPECTED_TEXT = 'text'
+    EXPECTED_NUMBER = 'number'
+    EXPECTED_ANSWER_CHOICES = [
+        (EXPECTED_TEXT, 'Текст'),
+        (EXPECTED_NUMBER, 'Число'),
+    ]
+    expected_answer_type = models.CharField(
+        max_length=10,
+        choices=EXPECTED_ANSWER_CHOICES,
+        default=EXPECTED_TEXT,
+        verbose_name="Ожидаемый тип открытого ответа"
+    )
 
     def __str__(self):
-        return f"Заказ от {self.customer.name} - Дата создания: {self.created_at}"
+        return self.text
 
 
-class Test(models.Model):
-    PROJECT_CHOICES = [
-        ('yes', 'Да'),
-        ('no', 'Нет')
-    ]
-
-    FLOORS_CHOICES = [
-        (1, '1 этаж'),
-        (2, '2 этажа'),
-        (3, '3 этажа'),
-        ('individual', 'Индивидуальный')
-    ]
-
-    HEATING_CHOICES = [
-        ('warm_floor', 'Теплый пол'),
-        ('radiators', 'Радиаторы'),
-        ('warm_floor_radiators', 'Теплый пол + Радиаторы')
-    ]
-
-    BOILER_TYPE_CHOICES = [
-        ('gas', 'Газ'),
-        ('electric', 'Электро'),
-        ('solid_fuel', 'Твердотопливный'),
-        ('diesel', 'Дизельный')
-    ]
-
-    water_supply_sewage = models.BooleanField(default=False)
-    square = models.FloatField(verbose_name="Площадь")
-    project = models.CharField(max_length=3, choices=PROJECT_CHOICES)
-    floors = models.IntegerField(choices=FLOORS_CHOICES)
-    heating = models.CharField(max_length=50, choices=HEATING_CHOICES)
-    boiler_type = models.CharField(max_length=50, choices=BOILER_TYPE_CHOICES)
-
-    customer_name = models.CharField(max_length=100, verbose_name="Имя заказчика")
-    customer_number = models.CharField(max_length=15, verbose_name="Номер телефона")
+class Answer(models.Model):
+    question = models.ForeignKey(Question, related_name="answers", on_delete=models.CASCADE)
+    text = models.CharField(max_length=255, verbose_name="Текст ответа")
 
     def __str__(self):
-        return f"Тест для {self.customer_name} - Площадь: {self.square} м²"
+        return f"{self.text} (Вопрос: {self.question.text})"
 
-    def is_complete(self):
-        return all([self.water_supply_sewage, self.square, self.project, self.floors, self.heating, self.boiler_type])
+
+class TestResult(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name="Клиент", null=True, blank=True)
+    answers = models.ManyToManyField(Answer, verbose_name="Выбранные ответы")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Результат теста для {self.customer.name if self.customer else 'неизвестного клиента'} номер: {self.customer.number if self.customer else 'x'}"
+
+
+class OpenAnswer(models.Model):
+    test_result = models.ForeignKey(TestResult, on_delete=models.CASCADE, verbose_name="Результат теста")
+    question = models.ForeignKey(Question, on_delete=models.CASCADE, verbose_name="Вопрос")
+    text = models.TextField(verbose_name="Ответ пользователя")
+
+    def __str__(self):
+        return f"Ответ на '{self.question.text}': {self.text}"
 
 
 class WorkPic(models.Model):
     work_id = models.ForeignKey(to=Work, on_delete=models.SET_NULL, null=True, related_name='photos')
     photo = models.ImageField(verbose_name="Фото объекта")
+
+
+class Order(models.Model):
+    customer = models.ForeignKey('Customer', on_delete=models.CASCADE, related_name='orders', default=1)
+    service = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='orders', default=1)
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    test_result = models.OneToOneField('TestResult', on_delete=models.CASCADE, related_name='order', null=True, blank=True)
+    estimate = models.BooleanField(default=False, verbose_name="Сформирована смета?")
+    contract = models.BooleanField(default=False, verbose_name="Заключен договор по заказу?")
+
+    def __str__(self):
+        return f"Order #{self.id} for {self.customer.name} date: {self.created_at}"

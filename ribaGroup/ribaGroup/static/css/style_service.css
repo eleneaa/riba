@@ -63,6 +63,85 @@ h1 {
 }
 
 
+.discount {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 34px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+.proc {
+    font-family: "Georgia", serif;
+    font-weight: 700;
+    font-size: 40px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+body {
+    margin: 0;
+    /* Убираем отступы у body */
+}
+
+h1 {
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 32px;
+    color: #2E3047;
+    padding-left: 30px;
+}
+
+.image-container {
+    position: relative; /* Делаем позиционирование для контейнера */
+    margin-left: 0; /* Сдвигаем контейнер к левому краю */
+    padding: 0;
+    height: 400px; /* Уменьшаем высоту контейнера */
+    width: 100%;
+}
+
+.image-container img {
+    width: 914px; /* Уменьшаем ширину изображения */
+    height: 300px; /* Уменьшаем высоту изображения */
+    display: block;
+    object-fit: cover;/* Убираем пробелы под изображением */
+}
+
+.image-container::after {
+    content: ''; /* Обязательный контент для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: -40px; /* Начало псевдоэлемента от верхней границы контейнера */
+    right: 0; /* Позиционируем псевдоэлемент к правому краю контейнера */
+    width: 670px; /* Уменьшаем ширину размытия */
+    height: 400px; /* Уменьшаем высоту псевдоэлемента */
+    background: #D9D9D9; /* Цвет фона для размытия */
+    filter: blur(18px); /* Уменьшаем значение размытия */
+    pointer-events: none; /* Игнорируем клики на псевдоэлемент */
+    z-index: 1; /* Задаем уровень слоя псевдоэлемента */
+}
+
+.header p {
+    position: absolute; /* Абсолютное позиционирование заголовков */
+    z-index: 2; /* Устанавливаем более высокий уровень, чем у псевдоэлемента */
+    color: #2E3047; /* Цвет текста заголовков */
+    text-align: left; /* Центрируем текст */
+    left: 76%; /* Центральное выравнивание по горизонтали */
+    transform: translateX(-45%);
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Уменьшаем размер шрифта */
+    top: 32%; /* Отодвигаем заголовок h1 от верхней границы контейнера */
+    width: 420px; /* Уменьшаем ширину */
+}
+
+.advantages h2 {
+    padding-left: 50px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Размер шрифта заголовка */
+    margin-bottom: 20px;
+}
+
+
 .test-form h2 {
     padding-left: 30px;
     width: 1140px;
@@ -86,61 +165,276 @@ h1 {
     font-style: italic;
 }
 
-.choices {
-    display: flex;
-    flex-wrap: wrap; /* Перенос строк для кнопок, если их много */
-    gap: 15px;     /* Пространство между элементами */
-    margin-bottom: 20px; /* Отступ снизу */
+body {
+    margin: 0;
+    /* Убираем отступы у body */
 }
 
-/* Индивидуальный стиль для каждого варианта (метка) */
-.radio-label {
-    flex: 1 1 40%; /* Автоматическая ширина кнопок: 40% от контейнера, адаптивно */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 20px;
-    background-color: #eaeaea; /* Серый фон по умолчанию кнопок */
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    text-align: center;
+h1 {
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 32px;
+    color: #2E3047;
+    padding-left: 30px;
+}
+
+.image-container {
+    position: relative; /* Делаем позиционирование для контейнера */
+    margin-left: 0; /* Сдвигаем контейнер к левому краю */
+    padding: 0;
+    height: 400px; /* Уменьшаем высоту контейнера */
+    width: 100%;
+}
+
+.image-container img {
+    width: 914px; /* Уменьшаем ширину изображения */
+    height: 300px; /* Уменьшаем высоту изображения */
+    display: block;
+    object-fit: cover;/* Убираем пробелы под изображением */
+}
+
+.image-container::after {
+    content: ''; /* Обязательный контент для псевдоэлемента */
+    position: absolute; /* Абсолютное позиционирование */
+    top: -40px; /* Начало псевдоэлемента от верхней границы контейнера */
+    right: 0; /* Позиционируем псевдоэлемент к правому краю контейнера */
+    width: 670px; /* Уменьшаем ширину размытия */
+    height: 400px; /* Уменьшаем высоту псевдоэлемента */
+    background: #D9D9D9; /* Цвет фона для размытия */
+    filter: blur(18px); /* Уменьшаем значение размытия */
+    pointer-events: none; /* Игнорируем клики на псевдоэлемент */
+    z-index: 1; /* Задаем уровень слоя псевдоэлемента */
+}
+
+.header p {
+    position: absolute; /* Абсолютное позиционирование заголовков */
+    z-index: 2; /* Устанавливаем более высокий уровень, чем у псевдоэлемента */
+    color: #2E3047; /* Цвет текста заголовков */
+    text-align: left; /* Центрируем текст */
+    left: 76%; /* Центральное выравнивание по горизонтали */
+    transform: translateX(-45%);
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Уменьшаем размер шрифта */
+    top: 32%; /* Отодвигаем заголовок h1 от верхней границы контейнера */
+    width: 420px; /* Уменьшаем ширину */
+}
+
+.advantages h2 {
+    padding-left: 50px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: ExtraBold;
+    font-size: 30px; /* Размер шрифта заголовка */
+    margin-bottom: 20px;
+}
+
+
+.test-form h2 {
+    padding-left: 30px;
+    width: 1140px;
+    color: #2E3047;
+    font-family: "Mulish", serif;
+    font-weight: Bold;
+    font-size: 34px;
+}
+
+.discount {
+    font-family: "Georgia", serif;
+    font-weight: 400;
+    font-size: 34px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+.proc {
+    font-family: "Georgia", serif;
+    font-weight: 700;
+    font-size: 40px; /* Уменьшаем размер шрифта заголовков */
+    font-style: italic;
+}
+
+/* Подключение шрифта Mulish */
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
+
+/* Общие стили для формы */
+.test-form {
+    max-width: 600px; /* Ограничиваем ширину формы */
+    margin: 2rem auto; /* Центрируем форму и добавляем отступы */
+    padding: 2rem;
+    background-color: #556877; /* Цвет фона формы */
+    border-radius: 40px; /* Скругление углов */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+}
+
+/* Стили для текста вопроса */
+.form-title {
+    font-size: 1.5rem;
+    color: #D9D9D9; /* Цвет текста вопроса */
+    margin-bottom: 1.5rem;
+    font-weight: bold; /* Жирный шрифт */
+}
+
+/* Стили для группы полей */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.question-text {
+    color: #D9D9D9; /* Цвет текста вопроса */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 1rem;
+}
+
+/* Стили для радиокнопок */
+.choice-group {
+    margin-bottom: 0.75rem;
+}
+
+.choice-input {
+    display: none; /* Скрываем стандартные радиокнопки */
+}
+
+.choice-label {
+    display: block;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #D9D9D9; /* Цвет текста вариантов ответа */
+    background-color: #556877
+    border: 3px solid black;/* Цвет фона вариантов ответа */
+    border-radius: 40px; /* Скругление углов */
     cursor: pointer;
-    transition: all 0.3s ease; /* Плавные изменения при наведении/выборе */
+    line-height: 1.5;
+    font-weight: bold; /* Жирный шрифт */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Скрываем настоящую радиокнопку */
-.radio-label input[type="radio"] {
-    display: none;
+/* Состояние выбранного варианта ответа */
+.choice-input:checked + .choice-label {
+    background-color: #D9D9D9; /* Цвет фона выбранного варианта */
+    color: #556877; /* Цвет текста выбранного варианта */
 }
 
-/* Внешний вид выбрано */
-.radio-label input[type="radio"]:checked + .choice {
-    background-color: #3498db; /* Синий фон для выбранного варианта */
-    color: white; /* Белый цвет текста в выбранном */
-    border-color: #3498db;
+/* Стили для чекбоксов */
+.checkbox-group {
+    margin-bottom: 0.75rem;
 }
 
-/* Наведение (hover) */
-.radio-label:hover {
-    background-color: #f0f0f0; /* Светлый фон при наведении */
-    border-color: #ccc;
+.checkbox-input {
+    display: none; /* Скрываем стандартный чекбокс */
 }
 
-/* Кнопка отправки */
-.test-form button[type="submit"] {
+.checkbox-label {
+    display: block;
+    padding: 1rem;
+    font-size: 1rem;
+    color: #556877; /* Цвет текста */
+    background-color: #D9D9D9; /* Цвет фона */
+    border-radius: 40px; /* Скругление углов */
+    cursor: pointer;
+    line-height: 1.5;
+    font-weight: bold; /* Жирный шрифт */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Состояние выбранного чекбокса */
+.checkbox-input:checked + .checkbox-label {
+    background-color: #556877; /* Цвет фона выбранного чекбокса */
+    color: #D9D9D9; /* Цвет текста выбранного чекбокса */
+}
+
+/* Стили для числовых полей */
+.number-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #556877; /* Цвет текста */
+    background-color: #D9D9D9; /* Цвет фона */
+    border: none;
+    border-radius: 40px; /* Скругление углов */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+    font-weight: bold; /* Жирный шрифт */
+    box-sizing: border-box;
+}
+
+.number-input:focus {
+    outline: none;
+    border: 2px solid #556877; /* Цвет границы при фокусе */
+}
+
+/* Стили для кнопки "Далее" */
+.form-submit {
     display: block;
     width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    font-weight: bold;
-    background-color: #3498db;
-    color: white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #556877; /* Цвет текста кнопки */
+    background-color: #D9D9D9; /* Цвет фона кнопки */
     border: none;
-    border-radius: 8px;
+    border-radius: 40px; /* Скругление углов */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin-top: 1.5rem;
+    font-weight: bold; /* Жирный шрифт */
+    font-family: 'Mulish', sans-serif; /* Шрифт */
+}
+
+.form-submit:hover {
+    background-color: #3A4A5C; /* Темный оттенок при наведении */
+    color: #D9D9D9; /* Цвет текста при наведении */
+}
+/* Стили для формы контактов */
+.contact-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.contact-form .form-label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #556877; /* Цвет текста метки */
+    font-weight: bold;
+}
+
+.contact-form .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #D9D9D9; /* Цвет границы поля ввода */
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.contact-form .form-input:focus {
+    border-color: #556877; /* Цвет границы при фокусе */
+    outline: none;
+}
+
+/* Стили для сообщения о завершении */
+.completion-message {
+    font-size: 1.5rem;
+    color: #556877; /* Цвет текста сообщения */
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Стили для кнопки "Пройти тест снова" */
+.restart-form .form-submit {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #556877; /* Цвет кнопки */
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.test-form button[type="submit"]:hover {
-    background-color: #2980b9; /* Темнее цвет фона при наведении */
+.restart-form .form-submit:hover {
+    background-color: #3A4A5C; /* Темный оттенок при наведении */
 }
