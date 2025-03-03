@@ -16,11 +16,10 @@
 </section>
 
 <section class="advantages">
-    <h2>Преимущества:</h2>
     <ul>
         {% for key, value in advantages.items %}
         <li>
-            <strong>{{ key }}</strong>: {{ value }}
+            <strong>{{ key }}</strong>: <br> {{ value }}
         </li>
         {% endfor %}
     </ul>
@@ -29,7 +28,6 @@
 
 <section class="test-form">
     {% if stage == 'questions' %}
-    <h2 class="form-title">Ответьте на вопросы:</h2>
     <form method="post" class="questions-form">
         {% csrf_token %}
         {% for field in form %}
@@ -95,15 +93,37 @@
             <label for="phone" class="form-label">Номер телефона</label>
             <input type="tel" id="phone" name="phone" class="form-input">
         </div>
+
+        <!-- Блок с чекбоксами для выбора способа связи -->
+        <div class="form-group">
+            <p class="question-text">Предпочтительный способ связи:</p>
+            <div class="checkbox-group">
+                <input type="checkbox" id="contact_call" name="contact_method" class="checkbox-input" value="call">
+                <label for="contact_call" class="checkbox-label">Звонок</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="contact_whatsapp" name="contact_method" class="checkbox-input" value="whatsapp">
+                <label for="contact_whatsapp" class="checkbox-label">Ватсап</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="contact_telegram" name="contact_method" class="checkbox-input" value="telegram">
+                <label for="contact_telegram" class="checkbox-label">Телеграм</label>
+            </div>
+        </div>
+
         <button type="submit" class="form-submit">Отправить</button>
     </form>
 
     {% elif stage == 'completed' %}
-    <h2 class="completion-message">Спасибо, мы с вами свяжемся!</h2>
+    <h2 class="completion-message">Спасибо за уделенное время, мы свяжемся с Вами в течение рабочего дня!</h2>
     <form action="{% url 'Услуга' service_name=service.url_title %}" class="restart-form">
-        <button type="submit" class="form-submit">Пройти тест снова</button>
+        <a href="{% url 'reset_session' %}" class="restart-form">Пройти снова</a>
     </form>
     {% endif %}
+</section>
+
+<section class="desk-bottom">
+    {{ service.description_bottom }}
 </section>
 {% endblock %}
 
