@@ -17,18 +17,24 @@
 
 <section class="advantages">
     <ul>
-        {% for key, value in advantages.items %}
-        <li>
-            <strong>{{ key }}</strong>: <br> {{ value }}
-        </li>
-        {% endfor %}
-    </ul>
+    {% for key, value in advantages.items %}
+    <li>
+        <strong>{{ key }}:</strong> <br>
+        <span class="value">{{ value }}</span>
+    </li>
+    {% endfor %}
+</ul>
 </section>
 
+<section class="sale">
+    <p>
+        Получите предварительный расчет стоимости <br>по вашим параметрам дома и <span class="italic">закрепите скидку</span> <span class="italic-bold">15%</span>
+    </p>
+</section>
 
-<section class="test-form">
+<section class="test-form" id="test-form">
     {% if stage == 'questions' %}
-    <form method="post" class="questions-form">
+    <form method="post" class="questions-form" onsubmit="saveScrollPosition()">
         {% csrf_token %}
         {% for field in form %}
             <div class="form-group">
@@ -73,17 +79,44 @@
                     {% endfor %}
 
                 {% else %}
-                    <!-- Рендеринг текстовых полей, текстовых областей и других типов -->
-                    {{ field }}
+                    {% if field.field.widget.input_type == 'number' %}
+                        <div class="input-with-unit">
+                        <input type="text"
+                               id="{{ field.id_for_label }}"
+                               name="{{ field.name }}"
+                               class="number-input"
+                               pattern="\d*"
+                               title="Пожалуйста, введите только цифры">
+                        <span class="unit">м²</span>
+                        </div>
+                    {% else %}
+                        {{ field }}
+                    {% endif %}
                 {% endif %}
             </div>
         {% endfor %}
         <button type="submit" class="form-submit">Далее</button>
+
+        <script>
+    function saveScrollPosition() {
+        const scrollPosition = window.scrollY; // Текущая позиция прокрутки
+        sessionStorage.setItem('scrollPosition', scrollPosition); // Сохраняем в sessionStorage
+    }
+
+    window.addEventListener('load', function () {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, parseInt(scrollPosition)); // Восстанавливаем позицию
+            sessionStorage.removeItem('scrollPosition'); // Очищаем sessionStorage
+        }
+    });
+</script>
+
     </form>
 
     {% elif stage == 'contact' %}
     <h2 class="form-title">Ваши контактные данные:</h2>
-    <form method="post" class="contact-form">
+    <form method="post" class="contact-form" onsubmit="saveScrollPosition()">
         {% csrf_token %}
         <div class="form-group">
             <label for="name" class="form-label">Имя</label>
@@ -112,18 +145,47 @@
         </div>
 
         <button type="submit" class="form-submit">Отправить</button>
+
+        <script>
+    function saveScrollPosition() {
+        const scrollPosition = window.scrollY; // Текущая позиция прокрутки
+        sessionStorage.setItem('scrollPosition', scrollPosition); // Сохраняем в sessionStorage
+    }
+
+    window.addEventListener('load', function () {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, parseInt(scrollPosition)); // Восстанавливаем позицию
+            sessionStorage.removeItem('scrollPosition'); // Очищаем sessionStorage
+        }
+    });
+</script>
     </form>
 
     {% elif stage == 'completed' %}
     <h2 class="completion-message">Спасибо за уделенное время, мы свяжемся с Вами в течение рабочего дня!</h2>
-    <form action="{% url 'Услуга' service_name=service.url_title %}" class="restart-form">
+    <form action="{% url 'Услуга' service_name=service.url_title %}" class="restart-form" onsubmit="saveScrollPosition()">
         <a href="{% url 'reset_session' %}" class="restart-form">Пройти снова</a>
+        <script>
+    function saveScrollPosition() {
+        const scrollPosition = window.scrollY; // Текущая позиция прокрутки
+        sessionStorage.setItem('scrollPosition', scrollPosition); // Сохраняем в sessionStorage
+    }
+
+    window.addEventListener('load', function () {
+        const scrollPosition = sessionStorage.getItem('scrollPosition');
+        if (scrollPosition) {
+            window.scrollTo(0, parseInt(scrollPosition)); // Восстанавливаем позицию
+            sessionStorage.removeItem('scrollPosition'); // Очищаем sessionStorage
+        }
+    });
+</script>
     </form>
     {% endif %}
 </section>
 
 <section class="desk-bottom">
-    {{ service.description_bottom }}
+    <p>{{ service.description_bottom }}</p>
 </section>
 {% endblock %}
 

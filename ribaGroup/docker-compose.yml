@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .         # Используется текущая директория
+    container_name: ribagroup
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/ribaGroup     # Монтируем текущую директорию в /ribaGroup
+    ports:
+      - "8000:8000"
+    environment:
+      DJANGO_ENV: development

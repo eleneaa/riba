@@ -1,5 +1,23 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
-    background-color: #D9D9D9; /* Цвет фона страницы */
+    background-color: #D9D9D9;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    flex-shrink: 0;
+    background-color: #2E3047;
+    padding: 10px 20px;
 }
 
 nav {
@@ -22,13 +40,50 @@ nav > ul > li {
 }
 
 nav ul ul {
-    display: none; /* Скрываем вложенное меню по умолчанию */
-    position: absolute; /* Абсолютное позиционирование для вложенного меню */
-    left: 0; /* Выравнивание по левому краю */
-    top: 100%; /* Сдвигаем вниз для абсолютного позиционирования */
-    z-index: 3; /* Устанавливаем уровень слоя для подменю */
-    background-color: white; /* Цвет фона подменю */
-    border: 1px solid #ccc; /* Граница подменю */
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    z-index: 3;
+    background-color: #2E3047;
+    border-radius: 10px;
+    padding: 10px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0; /* Начальная прозрачность */
+    transform: translateY(-10px); /* Сдвиг вверх */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Плавный переход */
+}
+
+nav ul li:hover > ul {
+    display: block;
+    opacity: 1; /* Полная видимость */
+    transform: translateY(0); /* Сдвиг вниз */
+}
+
+nav ul ul li {
+    display: block; /* Элементы списка отображаются как блоки */
+    margin: 0; /* Убираем внешние отступы */
+    padding: 10px 20px; /* Отступы внутри элементов */
+    font-family: "Mulish", serif; /* Шрифт для текста */
+    font-weight: medium; /* Начертание шрифта */
+    font-size: 20px; /* Размер шрифта */
+    color: #D9D9D9; /* Цвет текста */
+    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета текста */
+}
+
+nav ul ul li:hover {
+    background-color: #4C4E6E; /* Цвет фона при наведении */
+    border-radius: 5px; /* Скругленные углы при наведении */
+}
+
+nav ul ul li a {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #D9D9D9; /* Цвет текста ссылки */
+    display: block; /* Ссылка занимает всю ширину элемента */
+}
+
+nav ul ul li:hover a {
+    color: white; /* Цвет текста ссылки при наведении */
 }
 
 nav ul li:hover > ul {
@@ -37,18 +92,20 @@ nav ul li:hover > ul {
 
 nav ul li:hover {
     background-color: #2E3047; /* Цвет фона для пункта меню при наведении */
+    border-radius: 10px;
 }
 
 nav ul li a {
     text-decoration: none; /* Убираем подчеркивание */
     color: black; /* Цвет текста ссылки */
     transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета текста */
-    padding: 5px 10px; /* Добавляем пространство вокруг текста */
+    padding: 10px; /* Добавляем пространство вокруг текста */
 }
 
 nav ul li:hover > a {
     background-color: transparent; /* Фон ссылки при наведении на элемент */
     color: white; /* Цвет текста ссылки при наведении */
+    padding: 10px;
 }
 
 nav ul li:hover {
@@ -57,11 +114,27 @@ nav ul li:hover {
 
 nav a:hover {
     color: white; /* Цвет текста при наведении на ссылку */
+    padding: 10px;
 }
 
-.logo{
-    width: 90px; /* Задает ширину изображения */
-    height: 90px; /* Задает высоту изображения */
+.no-hover {
+    width: 5px; /* Задает ширину изображения */
+    height: 5px; /* Задает высоту изображения */
+}
+
+.no-hover:hover {
+    background-color: transparent;
+}
+
+.no-hover img {
+    width: 33px; /* Задает ширину изображения */
+    height: 33px; /* Задает высоту изображения */
+}
+
+.logo {
+    pointer-events: none;
+    width: 50px; /* Задает ширину изображения */
+    height: 73px; /* Задает высоту изображения */
 }
 
 footer {
@@ -69,7 +142,7 @@ footer {
     justify-content: space-between; /* Разделяем контент и лого */
     align-items: center; /* Выравниваем по центру по вертикали */
     padding: 10px 20px; /* Добавляем отступы для футера, по необходимости */
-    background-color:  #2E3047; /* Пример фона, можете настроить по своему усмотрению */
+    background-color: #2E3047; /* Пример фона, можете настроить по своему усмотрению */
 }
 
 .content a {
@@ -93,4 +166,14 @@ footer {
 .logof {
     width: 100px; /* Пример ширины логотипа, настройте под свои нужды */
     height: 140px; /* Сохраняем пропорции изображения */
+}
+
+@media (max-width: 1000px) {
+    footer {
+        padding-bottom: 10px; /* Adjust padding for smaller screens */
+    }
+
+    body {
+        overflow-x: hidden; /* Prevent accidental horizontal scrollbars */
+    }
 }

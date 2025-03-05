@@ -89,6 +89,7 @@ def service(request, service_name):
                     test_result.answers.set(Answer.objects.filter(id__in=selected_answers))
 
                 # Сохраняем открытые ответы
+                open_answers = request.session.get('open_answers', [])
                 for item in open_answers:
                     OpenAnswer.objects.create(
                         test_result=test_result,
@@ -189,10 +190,17 @@ def reset_session(request):
 def send_order_to_telegram(order, contact_methods):
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
 
-    all_answer = {}
+    # Собираем все ответы (выбранные и открытые)
+    all_answers = {}
 
+    # Добавляем выбранные ответы
     for answer in order.test_result.answers.all():
-        all_answer[answer.question] = answer.text
+        all_answers[answer.question.text] = answer.text
+
+    # Добавляем открытые ответы
+    open_answers = order.test_result.openanswer_set.all()  # Получаем все открытые ответы
+    for open_answer in open_answers:
+        all_answers[open_answer.question.text] = open_answer.text
 
     # Формируем текст сообщения
     message = (
@@ -200,19 +208,13 @@ def send_order_to_telegram(order, contact_methods):
         f"📋 Услуга: <i>{order.service.name}</i>\n"
         f"👤 Клиент: <i>{order.customer.name}</i>\n"
         f"📞 Телефон: <i>{order.customer.number}</i>\n"
-        f"📞 Способ связи: <i>{contact_methods}</i>\n"
+        f"📞 Способ связи: <i>{', '.join(contact_methods)}</i>\n"
         f"📊 Ответы:\n"
     )
 
     # Добавляем вопросы и ответы в формате "вопрос: ответ"
-    for question, answer_text in all_answer.items():
-        message += f"- <i>{question}</i> <strong>{answer_text}</strong>\n"
-
-    # Если в тесте есть открытые ответы, добавляем их
-    open_answers = order.test_result.openanswer_set.all()
-    if open_answers:
-        for answer in open_answers:
-            message += f"- <i>{answer.question}:</i> <strong>{answer.text}</strong>"
+    for question, answer_text in all_answers.items():
+        message += f"- <i>{question}</i>: <strong>{answer_text}</strong>\n"
 
     # Опции для Telegram API
     payload = {

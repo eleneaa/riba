@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
+
 /* Общие стили */
 body {
     margin: 0;
@@ -25,7 +26,6 @@ h1 {
 .header {
     display: flex;
     align-items: center;
-    padding: 20px;
     background-color: #D9D9D9;
     margin-bottom: 20px;
 }
@@ -85,25 +85,77 @@ h1 {
     justify-content: space-evenly;
     list-style: none;
     padding: 0;
+    align-content: center;
 }
 
 .advantages li {
-    width: 20%;
-    text-align: left;
+    width: 25%;
+    min-height: 150px; /* Минимальная высота */
+    text-align: center;
+    color: #D9D9D9;
+    border-radius: 40px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .advantages li strong {
-    font-family: 'Georgia', sans-serif;
+    font-family: 'Mulish', sans-serif;
     font-weight: 700;
-    font-size: 28px;
+    font-size: 32px; /* Фиксированный размер шрифта */
+    font-style: italic;
+    color: #D9D9D9;
+    margin-bottom: 10px; /* Отступ между заголовком и текстом */
+}
+
+.value {
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 28px; /* Фиксированный размер шрифта */
+    color: #D9D9D9;
+}
+
+.advantages li:nth-child(1) {
+    background-color: #A4887C
+}
+
+.advantages li:nth-child(2) {
+    background-color: #2E3047
+}
+
+.advantages li:nth-child(3) {
+    background-color: #757C80
+}
+
+.sale {
+    min-height: 10px;
+    max-height: 250px;
+}
+
+.sale p {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: #2E3047;
+}
+
+.italic {
+    font-family: 'Georgia', sans-serif;
+    font-weight: 400;
+    font-size: 40px;
     font-style: italic;
     color: #2E3047;
 }
 
-.advantages li p {
-    font-family: 'Mulish', sans-serif;
-    font-weight: 400;
-    font-size: 40px;
+.italic-bold {
+    font-family: 'Georgia', sans-serif;
+    font-weight: 700;
+    font-size: 44px;
+    font-style: italic;
     color: #2E3047;
 }
 
@@ -182,10 +234,54 @@ h1 {
     background-color: #D9D9D9;
     color: #556877;
 }
+.number-input {
+    width: 70%;
+    padding: 10px;
+    font-size: 20px;
+    color: #2E3047;
+    background-color: #D9D9D9;
+    border: 2px solid #556877;
+    border-radius: 10px;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.number-input:focus {
+    outline: none;
+    border-color: #2E3047;
+}
+
+.number-input:invalid {
+    border-color: #ff4d4d;
+}
+
+.number-input:invalid::placeholder {
+    color: #ff4d4d;
+}
+
+.input-with-unit {
+    display: flex;
+    align-items: center; /* Выравниваем элементы по вертикали */
+    gap: 10px; /* Расстояние между полем ввода и текстом */
+}
+
+/* Стили для текста "м²" */
+.unit {
+    font-size: 20px;
+    color: #D9D9D9;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+}
 
 /* Форма контактов */
 .contact-form .form-group {
     margin-bottom: 20px;
+}
+
+.form-title {
+    color: #D9D9D9;
 }
 
 .contact-form .form-label {
@@ -224,22 +320,22 @@ h1 {
     margin-bottom: 20px;
 }
 
-.restart-form .form-submit {
-    background-color: transparent;
-    color: #D9D9D9;
-    border: 2px solid #D9D9D9;
+.restart-form  {
+    text-align: center;
+    background-color: #D9D9D9;
+    color: #556877;
     border-radius: 10px;
     padding: 10px 20px;
     font-family: 'Mulish', sans-serif;
     font-weight: 700;
-    font-size: 16px;
+    font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .restart-form .form-submit:hover {
-    background-color: #D9D9D9;
-    color: #556877;
+    background-color: #556877;
+    color: #D9D9D9;
 }
 
 /* Стили для чекбоксов */
@@ -297,6 +393,8 @@ h1 {
 }
 
 .desk-bottom {
+    min-height: 50px;
+    max-height: 150px;
     margin: 50px;
     font-family: 'Mulish', sans-serif;
     font-size: 30px;
@@ -304,29 +402,89 @@ h1 {
     color: #2E3047;
     text-align: center;
 }
-/* Адаптивность */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-    }
 
-    .image-container {
-        width: 100%;
-        height: 200px;
-    }
-
-    .header p {
-        width: 100%;
-        padding-left: 0;
-        margin-top: 20px;
-    }
-
+/* Адаптивность для планшетов (ширина экрана до 1024px) */
+@media (max-width: 1024px) {
     .advantages ul {
-        flex-direction: column;
+        flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
     }
 
     .advantages li {
-        width: 100%;
-        margin-bottom: 20px;
+        width: 25%; /* Уменьшаем ширину элементов */
+        margin-bottom: 20px; /* Добавляем отступ между элементами */
     }
+
+    .advantages li strong {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .value {
+        font-size: 20px;
+    }
+
+    .sale p {
+        font-size: 30px; /* Уменьшаем размер шрифта */
+    }
+
+    .italic {
+        font-size: 30px; /* Уменьшаем размер шрифта */
+    }
+
+    .italic-bold {
+        font-size: 34px; /* Уменьшаем размер шрифта */
+    }
+
+    .completion-message {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+
+    .desk-bottom {
+        font-size: 36px; /* Уменьшаем размер шрифта */
+        margin: 30px; /* Уменьшаем отступы */
+    }
+}
+
+/* Адаптивность для телефонов (ширина экрана до 768px) */
+@media (max-width: 768px) {
+    .advantages ul {
+        flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+    }
+
+    .advantages li {
+        width: 25%; /* Уменьшаем ширину элементов */
+        margin-bottom: 20px; /* Добавляем отступ между элементами */
+    }
+
+    .advantages li strong {
+        font-size: 22px;
+        margin-bottom: 5px;
+    }
+
+    .value {
+        font-size: 20px;
+    }
+
+    .sale p {
+        font-size: 22px; /* Уменьшаем размер шрифта */
+    }
+
+    .italic {
+        font-size: 22px; /* Уменьшаем размер шрифта */
+    }
+
+    .italic-bold {
+        font-size: 22px; /* Уменьшаем размер шрифта */
+    }
+
+
+    .completion-message {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+
+    .desk-bottom {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+        margin: 30px; /* Уменьшаем отступы */
+    }
+
 }

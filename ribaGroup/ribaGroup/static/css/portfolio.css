@@ -96,12 +96,12 @@ button.next {
 }
 
 /* Специфические цвета фона для overlay для каждой работы */
-.work:nth-child(1) .overlay {
+.work:nth-child(1n+1) .overlay {
     background-color: #556877; /* Первый цвет */
 }
-.work:nth-child(2) .overlay {
+.work:nth-child(1n+2) .overlay {
     background-color: #2E3047; /* Второй цвет */
 }
-.work:nth-child(3) .overlay {
+.work:nth-child(1n+3) .overlay {
     background-color: #A4887C; /* Третий цвет */
 }

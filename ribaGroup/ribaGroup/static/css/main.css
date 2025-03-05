@@ -2,41 +2,46 @@ body {
     margin: 0; /* Убираем отступы у body */
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    padding: 0px;
+    background-color: #D9D9D9;
+    margin-bottom: 20px;
+}
+
 .image-container {
-    position: relative; /* Делаем позиционирование для контейнера */
-    margin-left: 0; /* Сдвигаем контейнер к левому краю */
-    padding: 0;
-    height: 400px; /* Уменьшаем высоту контейнера */
-    width: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    position: relative;
+    width: 60%;
+    height: 400px;
+    overflow: hidden;
 }
 
 .image-container img {
-    width: 792px; /* Уменьшаем ширину изображения */
-    height: 400px; /* Уменьшаем высоту изображения */
-    display: block; /* Убираем пробелы под изображением */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .image-container::after {
-    content: ''; /* Обязательный контент для псевдоэлемента */
-    position: absolute; /* Абсолютное позиционирование */
-    top: -16px; /* Начало псевдоэлемента от верхней границы контейнера */
-    right: 0; /* Позиционируем псевдоэлемент к правому краю контейнера */
-    width: 700px; /* Уменьшаем ширину размытия */
-    height: 460px; /* Уменьшаем высоту псевдоэлемента */
-    background: #D9D9D9; /* Цвет фона для размытия */
-    filter: blur(12px); /* Уменьшаем значение размытия */
-    pointer-events: none; /* Игнорируем клики на псевдоэлемент */
-    z-index: 1; /* Задаем уровень слоя псевдоэлемента */
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(217, 217, 217, 0), #D9D9D9);
+    z-index: 1;
 }
 
-.header h1,
-.header h2 {
-    position: absolute; /* Абсолютное позиционирование заголовков */
-    z-index: 2; /* Устанавливаем более высокий уровень, чем у псевдоэлемента */
-    color: #2E3047; /* Цвет текста заголовков */
-    text-align: left; /* Центрируем текст */
-    left: 72%; /* Центральное выравнивание по горизонтали */
-    transform: translateX(-45%); /* Сдвигаем влево на половину ширины элемента */
+.header h1 {
+    width: 50%;
+    padding-left: 20px;
+    padding-right: 50px;
+    color: #2E3047;
+
 }
 
 .header h1 {
@@ -47,14 +52,12 @@ body {
     width: 504px; /* Уменьшаем ширину */
 }
 
-.header h2 {
-    left: 69%;
+.italic {
     font-family: "Georgia", serif;
     font-weight: 400;
-    font-size: 26px; /* Уменьшаем размер шрифта */
+    font-size: 28px; /* Уменьшаем размер шрифта */
     font-style: italic;
     top: 45%; /* Отодвигаем заголовок h2 ниже h1 */
-    padding-left: 20px;
     margin: 0;
 }
 
@@ -309,25 +312,44 @@ body {
     margin-bottom: 20px;
 }
 
-.call-me-please {
-    padding-left: 50px;
-    margin-right: 500px;
+.call-me-please{
+    padding: 20px 20px;
+    margin: 40px 0;
+
+}
+
+.text {
+    padding: 30px 50px;
+    background-color: #2E3047;
+    border-radius: 40px;
 }
 
 .call-me-please h2 {
-    color: #2E3047;
+
+    margin-right: 500px;
+    color: #D9D9D9;
     font-family: "Georgia", serif;
-    font-weight: 400;
-    font-size: 38px; /* Уменьшаем размер шрифта заголовков */
+    font-weight: 700;
+    font-size: 46px; /* Уменьшаем размер шрифта заголовков */
     font-style: italic;
 }
 
 .call-me-please p {
-    color: #2E3047;
+
+    margin-right: 500px;
+    color: #D9D9D9;
     font-family: "Mulish", serif;
     font-weight: Medium;
     font-size: 24px;
     margin-bottom: 0;
+}
+
+.contact-links {
+    padding-left: 50px;
+    margin-right: 500px;
+    display: flex; /* Используем Flexbox */
+    align-items: center; /* Выравниваем элементы по вертикали по центру */
+    gap: 10px; /* Отступ между элементами */
 }
 
 .tel {
@@ -338,12 +360,140 @@ body {
     font-weight: SemiBold;
     font-size: 30px;
     text-decoration: none;
+    padding: 10px; /* Добавляем отступы для лучшего визуального восприятия */
 }
 
-.call-me-please a {
-    margin-top: 40px;
-    padding: 10px;
-    margin-bottom: 0;
+.contact-links img {
+    width: 40px; /* Устанавливаем размер иконок */
+    height: 40px;
 }
 
+/* Медиа-запрос для планшетов (ширина экрана до 1024px) */
+@media (max-width: 1024px) {
+
+
+    .advantages {
+        width: 90%; /* Уменьшаем ширину секции */
+        margin: 30px auto; /* Уменьшаем отступы */
+    }
+
+    .advantages h2 {
+        font-size: 32px; /* Уменьшаем размер шрифта */
+    }
+
+    .advantages p {
+        font-size: 18px; /* Уменьшаем размер шрифта */
+    }
+
+    .services p {
+        font-size: 10px;
+    }
+
+    .services h2 {
+        font-size: 18px;
+    }
+
+    .services_container {
+        flex-direction: column; /* Карточки располагаются вертикально */
+        align-items: center; /* Центрируем карточки */
+    }
+
+    .service_card {
+        width: 90%; /* Карточки занимают 90% ширины */
+        margin-bottom: 20px; /* Отступ между карточками */
+    }
+
+    .service_card.boiler,
+    .service_card.radiator,
+    .service_card.water,
+    .service_card.floor {
+        width: 70%; /* Все карточки одинаковой ширины */
+    }
+
+    #currentImage {
+        width: 100%; /* Основное изображение занимает всю ширину */
+        height: auto; /* Высота автоматическая */
+    }
+
+    .call-me-please {
+        margin-right: 20px; /* Уменьшаем отступ справа */
+    }
+
+    .text {
+        padding: 20px; /* Уменьшаем отступы внутри текстового блока */
+    }
+
+    .call-me-please h2 {
+        margin-right: 0; /* Убираем отступ справа */
+        font-size: 36px; /* Уменьшаем размер шрифта */
+    }
+
+    .call-me-please p {
+        margin-right: 0; /* Убираем отступ справа */
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+
+    .contact-links {
+        margin-right: 0; /* Убираем отступ справа */
+        padding-left: 20px; /* Уменьшаем отступ слева */
+    }
+
+    .tel {
+        font-size: 36px; /* Уменьшаем размер шрифта */
+    }
+
+}
+
+/* Медиа-запрос для телефонов (ширина экрана до 768px) */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+
+    .italic {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+
+    .advantages h2 {
+        font-size: 28px; /* Уменьшаем размер шрифта */
+    }
+
+    .advantages p {
+        font-size: 16px; /* Уменьшаем размер шрифта */
+    }
+
+    .services h2 {
+        font-size: 28px; /* Уменьшаем размер шрифта */
+    }
+
+    .services p {
+        font-size: 18px; /* Уменьшаем размер шрифта */
+    }
+
+    .service_card h3 {
+        font-size: 24px; /* Уменьшаем размер шрифта */
+    }
+
+    .service_link {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+
+
+    .call-me-please h2 {
+        font-size: 28px; /* Уменьшаем размер шрифта */
+    }
+
+    .call-me-please p {
+        font-size: 18px; /* Уменьшаем размер шрифта */
+    }
+
+    .tel {
+        font-size: 20px; /* Уменьшаем размер шрифта */
+    }
+
+    .contact-links img {
+        width: 25px; /* Уменьшаем размер иконок */
+        height: 25px;
+    }
+}
 
