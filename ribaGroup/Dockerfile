@@ -1,19 +1,20 @@
-# 1. Используем базовый образ Python
-FROM python:3.10-slim
+FROM python:3.9-alpine
 
-# 2. Устанавливаем переменные среды для оптимизации работы
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# 3. Создаем рабочую директорию внутри контейнера
 WORKDIR /ribaGroup
 
-# 4. Копируем файл зависимостей и устанавливаем их
-COPY requirements.txt /ribaGroup/
-RUN pip install --upgrade pip && pip install -r requirements.txt
+RUN apk --update add \
+    gcc libc-dev libffi-dev jpeg-dev zlib-dev libjpeg \
+    && pip install --upgrade pip
 
-# 5. Копируем всё содержимое проекта внутрь контейнера
-COPY . /ribaGroup/
+COPY ./requirements.txt .
+RUN pip install -r requirements.txt
 
-# 6. Запускаем приложение
-CMD ["python", "manage.py", "runserver"]
+COPY . ./
+
+RUN python manage.py collectstatic --noinput
+
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/ribaGroup/entrypoint.sh"]

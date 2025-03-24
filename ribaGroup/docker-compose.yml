@@ -1,14 +1,25 @@
-version: "3.8"
+version: "3"
 
 services:
   web:
     build:
-      context: .         # Используется текущая директория
-    container_name: ribagroup
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/ribaGroup     # Монтируем текущую директорию в /ribaGroup
+      context: .
+      dockerfile: Dockerfile
     ports:
       - "8000:8000"
-    environment:
-      DJANGO_ENV: development
+    entrypoint: ./entrypoint.sh
+    volumes:
+      - ./:/ribaGroup
+      - static_volume:/ribaGroup/staticfiles
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
