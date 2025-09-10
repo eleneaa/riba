@@ -22,15 +22,6 @@ services:
     depends_on:
       - web
 
-  db:
-    image: postgres:14
-    environment:
-      POSTGRES_DB: riba
-      POSTGRES_USER: riba
-      POSTGRES_PASSWORD: riba
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
 volumes:
   static_volume:
-  postgres_data:
+
