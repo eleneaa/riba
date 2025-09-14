@@ -1,190 +1,243 @@
-/* Подключение шрифтов */
-@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@400;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
-
 /* Общие стили */
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Mulish', sans-serif;
-    color: #2E3047;
-    background-color: #D9D9D9;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    color: #D9D9D9;
+    background-color: #121212;
     line-height: 1.6;
 }
 
 h1 {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 32px;
-    color: #2E3047;
-    padding-left: 30px;
-    margin-top: 20px;
+    font-size: 2.5rem;
+    color: #D9D9D9;
+    padding: 20px 0 0 5%;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* Шапка */
+/* Шапка услуги - с центрированием текста */
 .header {
     display: flex;
-    align-items: center;
-    background-color: #D9D9D9;
-    margin-bottom: 20px;
+    align-items: center; /* Центрируем по вертикали */
+    background-color: #121212;
+    margin-bottom: 40px;
+    padding: 0 5%;
+    gap: 40px;
+    min-height: 400px; /* Минимальная высота блока */
 }
 
-.image-container {
-    padding-left: 0;
-    margin-left: 0;
+.header-image {
     position: relative;
     width: 50%;
-    height: 300px;
+    height: 400px;
     overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+    flex-shrink: 0; /* Запрещаем уменьшение */
 }
 
-.image-container img {
+.header-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.image-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
+.header-content {
     width: 50%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(217, 217, 217, 0), #D9D9D9);
-    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Центрируем содержимое по вертикали */
 }
 
-.header p {
-    width: 50%;
-    padding-left: 20px;
-    padding-right: 50px;
-    font-size: 28px;
-    font-weight: SemiBold;
-    color: #2E3047;
+.header-content h1 {
+    padding: 0;
+    margin: 0 0 30px 0;
+    font-size: 2.5rem;
+    color: #D9D9D9;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.header-content p {
+    font-size: 1.4rem;
+    color: #D9D9D9;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .header-content h1 {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .header {
+        flex-direction: column;
+        gap: 30px;
+        min-height: auto;
+        align-items: flex-start;
+    }
+
+    .header-image,
+    .header-content {
+        width: 100%;
+    }
+
+    .header-image {
+        height: 350px;
+    }
+
+    .header-content h1 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+    }
+
+    .header-content {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-image {
+        height: 300px;
+    }
+
+    .header-content h1 {
+        font-size: 1.8rem;
+    }
+
+    .header-content p {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-image {
+        height: 250px;
+    }
+
+    .header-content h1 {
+        font-size: 1.6rem;
+    }
 }
 
 /* Преимущества */
 .advantages {
-    padding: 20px;
-    background-color: #D9D9D9;
-    margin-bottom: 20px;
-}
-
-.advantages h2 {
-    font-family: 'Mulish', sans-serif;
-    font-weight: 700;
-    font-size: 24px;
-    color: #2E3047;
-    margin-bottom: 20px;
+    padding: 40px 5%;
+    background-color: #121212;
+    margin-bottom: 40px;
 }
 
 .advantages ul {
-    display: flex;
-    justify-content: space-evenly;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
     list-style: none;
     padding: 0;
-    align-content: center;
 }
 
 .advantages li {
-    width: 25%;
-    min-height: 150px; /* Минимальная высота */
+    height: 200px;
     text-align: center;
-    color: #D9D9D9;
-    border-radius: 40px;
-    padding: 10px;
+    border-radius: 20px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #1E1E1E;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.advantages li:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(164, 78, 24, 0.2);
+    border-color: #A44E18;
 }
 
 .advantages li strong {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 32px; /* Фиксированный размер шрифта */
-    font-style: italic;
-    color: #D9D9D9;
-    margin-bottom: 10px; /* Отступ между заголовком и текстом */
+    font-size: 1.8rem;
+    color: #A44E18;
+    margin-bottom: 15px;
+    display: block;
 }
 
 .value {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 28px; /* Фиксированный размер шрифта */
+    font-size: 1.4rem;
     color: #D9D9D9;
 }
 
-.advantages li:nth-child(1) {
-    background-color: #A4887C
-}
-
-.advantages li:nth-child(2) {
-    background-color: #2E3047
-}
-
-.advantages li:nth-child(3) {
-    background-color: #757C80
-}
-
+/* Акция */
 .sale {
-    min-height: 10px;
-    max-height: 250px;
+    padding: 50px 5%;
+    text-align: center;
+    background: #121212;
+    margin: 40px 0;
 }
 
 .sale p {
-    text-align: center;
-    padding: 30px;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 40px;
-    color: #2E3047;
+    font-size: 2.2rem;
+    color: #D9D9D9;
+    margin: 0;
+    line-height: 1.5;
 }
 
 .italic {
-    font-family: 'Georgia', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 40px;
+    font-size: 2.2rem;
     font-style: italic;
-    color: #2E3047;
+    color: #D9D9D9;
 }
 
 .italic-bold {
-    font-family: 'Georgia', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 44px;
-    font-style: italic;
-    color: #2E3047;
+    font-size: 2.5rem;
+    color: #A44E18;
 }
 
 /* Форма */
 .test-form {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #556877;
-    border-radius: 40px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: #1E1E1E;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
 }
 
-
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .question-text {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #D9D9D9;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .choice-group,
 .checkbox-group {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .choice-input,
@@ -195,54 +248,63 @@ h1 {
 .choice-label,
 .checkbox-label {
     display: block;
-    padding: 10px;
-    font-family: 'Mulish', sans-serif;
+    padding: 15px;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: #D9D9D9;
     background-color: transparent;
-    border: 2px solid #D9D9D9;
+    border: 2px solid #3C2C22;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.choice-label:hover,
+.checkbox-label:hover {
+    border-color: #A44E18;
 }
 
 .choice-input:checked + .choice-label,
 .checkbox-input:checked + .checkbox-label {
-    background-color: #D9D9D9;
-    color: #556877;
+    background-color: #A44E18;
+    color: #D9D9D9;
+    border-color: #A44E18;
 }
 
 .form-submit {
     display: block;
     width: 50%;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Mulish', sans-serif;
+    padding: 15px;
+    margin: 30px auto 0;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: #D9D9D9;
-    background-color: transparent;
-    border: 2px solid #D9D9D9;
+    background-color: #A44E18;
+    border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .form-submit:hover {
-    background-color: #D9D9D9;
-    color: #556877;
+    background-color: #8C3E14;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(164, 78, 24, 0.4);
 }
+
 .number-input {
     width: 70%;
-    padding: 10px;
-    font-size: 20px;
-    color: #2E3047;
-    background-color: #D9D9D9;
-    border: 2px solid #556877;
+    padding: 15px;
+    font-size: 1.2rem;
+    color: #D9D9D9;
+    background-color: #1E1E1E;
+    border: 2px solid #3C2C22;
     border-radius: 10px;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
     box-sizing: border-box;
     transition: border-color 0.3s ease;
@@ -250,241 +312,268 @@ h1 {
 
 .number-input:focus {
     outline: none;
-    border-color: #2E3047;
-}
-
-.number-input:invalid {
-    border-color: #ff4d4d;
-}
-
-.number-input:invalid::placeholder {
-    color: #ff4d4d;
+    border-color: #A44E18;
 }
 
 .input-with-unit {
     display: flex;
-    align-items: center; /* Выравниваем элементы по вертикали */
-    gap: 10px; /* Расстояние между полем ввода и текстом */
+    align-items: center;
+    gap: 15px;
 }
 
-/* Стили для текста "м²" */
 .unit {
-    font-size: 20px;
+    font-size: 1.2rem;
     color: #D9D9D9;
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
 }
 
 /* Форма контактов */
 .contact-form .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .form-title {
     color: #D9D9D9;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 1.8rem;
 }
 
 .contact-form .form-label {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 20px;
+    font-size: 1.2rem;
     color: #D9D9D9;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 .contact-form .form-input {
     width: 100%;
-    padding: 10px;
-    font-family: 'Mulish', sans-serif;
+    padding: 15px;
+    font-family: 'Rubik', sans-serif;
     font-weight: 400;
-    font-size: 20px;
-    color: #2E3047;
-    background-color: #D9D9D9;
-    border: none;
+    font-size: 1.2rem;
+    color: #D9D9D9;
+    background-color: #1E1E1E;
+    border: 2px solid #3C2C22;
     border-radius: 10px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 .contact-form .form-input:focus {
     outline: none;
-    border: 2px solid #2E3047;
+    border-color: #A44E18;
 }
 
 /* Завершение теста */
 .completion-message {
-    font-family: 'Mulish', sans-serif;
+    font-family: 'Rubik', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 1.8rem;
     color: #D9D9D9;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    line-height: 1.5;
 }
 
-.restart-form  {
+.restart-form {
     text-align: center;
-    background-color: #D9D9D9;
-    color: #556877;
+    display: block;
+    width: 50%;
+    padding: 15px;
+    margin: 0 auto;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #D9D9D9;
+    background-color: #A44E18;
+    border: none;
     border-radius: 10px;
-    padding: 10px 20px;
-    font-family: 'Mulish', sans-serif;
-    font-weight: 700;
-    font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
-.restart-form .form-submit:hover {
-    background-color: #556877;
-    color: #D9D9D9;
+.restart-form:hover {
+    background-color: #8C3E14;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(164, 78, 24, 0.4);
 }
 
 /* Стили для чекбоксов */
-.checkbox-group {
-    margin-bottom: 10px;
-}
-
-.checkbox-input {
-    display: none; /* Скрываем стандартный чекбокс */
-}
-
 .checkbox-label {
-    display: block;
-    padding: 10px;
-    font-family: 'Mulish', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    color: #D9D9D9;
-    background-color: transparent;
-    border: 2px solid #D9D9D9;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
     position: relative;
-    padding-left: 40px; /* Отступ для кастомного квадрата */
+    padding-left: 50px;
 }
 
 .checkbox-label::before {
     content: '';
     position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    border: 2px solid #D9D9D9;
-    border-radius: 5px;
-    background-color: transparent;
-    transition: background-color 0.3s ease;
-}
-
-.checkbox-input:checked + .checkbox-label::before {
-    background-color: #D9D9D9;
-}
-
-/* Добавляем галочку для чекбоксов */
-.checkbox-input:checked + .checkbox-label::after {
-    content: '✓';
-    position: absolute;
     left: 15px;
     top: 50%;
     transform: translateY(-50%);
-    font-size: 16px;
-    color: #556877;
+    width: 24px;
+    height: 24px;
+    border: 2px solid #3C2C22;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: all 0.3s ease;
 }
 
+.checkbox-input:checked + .checkbox-label::before {
+    background-color: #A44E18;
+    border-color: #A44E18;
+}
+
+.checkbox-input:checked + .checkbox-label::after {
+    content: '✓';
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: #D9D9D9;
+}
+
+/* Описание внизу */
 .desk-bottom {
-    min-height: 50px;
-    max-height: 150px;
-    margin: 50px;
-    font-family: 'Mulish', sans-serif;
-    font-size: 30px;
-    font-weight: SemiBold;
-    color: #2E3047;
+    padding: 50px 5%;
+    font-family: 'Rubik', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #D9D9D9;
     text-align: center;
+    line-height: 1.7;
+    background-color: #1E1E1E;
+    margin: 50px 0;
+    border-radius: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Адаптивность для планшетов (ширина экрана до 1024px) */
-@media (max-width: 1024px) {
-    .advantages ul {
-        flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+/* Адаптивность */
+@media (max-width: 992px) {
+    .header {
+        flex-direction: column;
     }
 
-    .advantages li {
-        width: 25%; /* Уменьшаем ширину элементов */
-        margin-bottom: 20px; /* Добавляем отступ между элементами */
+    .image-container,
+    .header p {
+        width: 100%;
+        margin-bottom: 30px;
     }
 
-    .advantages li strong {
-        font-size: 22px;
-        margin-bottom: 5px;
+    .image-container {
+        height: 300px;
     }
 
-    .value {
-        font-size: 20px;
-    }
-
-    .sale p {
-        font-size: 30px; /* Уменьшаем размер шрифта */
-    }
-
-    .italic {
-        font-size: 30px; /* Уменьшаем размер шрифта */
-    }
-
+    .sale p,
+    .italic,
     .italic-bold {
-        font-size: 34px; /* Уменьшаем размер шрифта */
+        font-size: 1.8rem;
     }
 
-    .completion-message {
-        font-size: 20px; /* Уменьшаем размер шрифта */
-    }
-
-    .desk-bottom {
-        font-size: 36px; /* Уменьшаем размер шрифта */
-        margin: 30px; /* Уменьшаем отступы */
+    .test-form {
+        padding: 30px;
     }
 }
 
-/* Адаптивность для телефонов (ширина экрана до 768px) */
 @media (max-width: 768px) {
-    .advantages ul {
-        flex-wrap: wrap; /* Разрешаем перенос элементов на новую строку */
+    h1 {
+        font-size: 2rem;
+        padding-left: 5%;
+    }
+
+    .image-container {
+        height: 250px;
+    }
+
+    .header p {
+        font-size: 1.2rem;
     }
 
     .advantages li {
-        width: 25%; /* Уменьшаем ширину элементов */
-        margin-bottom: 20px; /* Добавляем отступ между элементами */
+        height: auto;
+        min-height: 150px;
     }
 
     .advantages li strong {
-        font-size: 22px;
-        margin-bottom: 5px;
+        font-size: 1.5rem;
     }
 
     .value {
-        font-size: 20px;
+        font-size: 1.2rem;
     }
 
-    .sale p {
-        font-size: 22px; /* Уменьшаем размер шрифта */
-    }
-
-    .italic {
-        font-size: 22px; /* Уменьшаем размер шрифта */
-    }
-
+    .sale p,
+    .italic,
     .italic-bold {
-        font-size: 22px; /* Уменьшаем размер шрифта */
+        font-size: 1.5rem;
     }
 
+    .test-form {
+        padding: 20px;
+        margin: 20px;
+    }
 
-    .completion-message {
-        font-size: 20px; /* Уменьшаем размер шрифта */
+    .question-text {
+        font-size: 1.3rem;
+    }
+
+    .choice-label,
+    .checkbox-label {
+        padding: 12px;
+        font-size: 1.1rem;
+    }
+
+    .form-submit,
+    .restart-form {
+        width: 70%;
     }
 
     .desk-bottom {
-        font-size: 20px; /* Уменьшаем размер шрифта */
-        margin: 30px; /* Уменьшаем отступы */
+        font-size: 1.2rem;
+        padding: 30px;
+        margin: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.6rem;
     }
 
+    .image-container {
+        height: 200px;
+    }
+
+    .sale p,
+    .italic,
+    .italic-bold {
+        font-size: 1.3rem;
+    }
+
+    .test-form {
+        padding: 15px;
+    }
+
+    .question-text {
+        font-size: 1.1rem;
+    }
+
+    .form-submit,
+    .restart-form {
+        width: 100%;
+        font-size: 1.1rem;
+    }
+
+    .desk-bottom {
+        font-size: 1.1rem;
+        padding: 20px;
+    }
 }

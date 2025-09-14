@@ -1,179 +1,277 @@
+/* Base Styles */
+:root {
+    --text-light: #DBD9D9;
+    --bg-dark: #121212;
+    --dark-brown: #3C2C22;
+    --accent: #A44E18;
+    --light-brown: #B28B6B;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap');
+
 html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: 'Rubik', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-weight: 700; /* Всегда жирный шрифт */
 }
 
 body {
-    background-color: #D9D9D9;
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
-main {
-    flex: 1;
-}
-
-footer {
-    flex-shrink: 0;
-    background-color: #2E3047;
-    padding: 10px 20px;
+/* Header Styles */
+/* Header Styles */
+header {
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 2px solid var(--dark-brown);
+    background-color: #121212;
 }
 
 nav {
-    text-align: center; /* Выравнивание текста в навигации по центру */
+    text-align: center;
+
 }
 
 nav ul {
-    list-style: none; /* Убираем маркеры списка */
-    padding: 0; /* Убираем отступы */
-    margin: 0; /* Убираем внешние отступы */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 nav > ul > li {
-    position: relative; /* Устанавливаем относительное позиционирование для родителя */
-    display: inline-block; /* Позиционируем элементы списка в ряд */
-    margin: 30px; /* Внешние отступы для элементов списка */
-    font-family: "Mulish", serif; /* Шрифт для текста */
-    font-weight: medium; /* Начертание шрифта */
-    font-size: 30px; /* Размер шрифта */
+    position: relative;
+    margin: 0 25px;
+    font-size: 1.4rem;
 }
 
+/* Logo Styles */
+.logo img {
+    width: 90px;
+    height: 90px;
+}
+
+/* Navigation Links */
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-light);
+    padding: 12px 0;
+    display: inline-block;
+    position: relative;
+    font-size: 1.4rem;
+    transition: color 0.3s ease;
+}
+
+/* Анимация подчеркивания */
+nav > ul > li:not(.logo):not(.no-hover) > a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background-color: var(--accent);
+    transition: width 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+nav > ul > li:not(.logo):not(.no-hover):hover > a::after {
+    width: 100%;
+}
+
+nav > ul > li:not(.logo):not(.no-hover):hover > a {
+    color: var(--accent);
+}
+
+/* Dropdown Menu */
 nav ul ul {
     display: none;
     position: absolute;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     top: 100%;
-    z-index: 3;
-    background-color: #2E3047;
-    border-radius: 10px;
-    padding: 10px 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    opacity: 0; /* Начальная прозрачность */
-    transform: translateY(-10px); /* Сдвиг вверх */
-    transition: opacity 0.3s ease, transform 0.3s ease; /* Плавный переход */
+    background-color: var(--bg-dark);
+    padding: 15px 0;
+    min-width: 280px;
+    z-index: 100;
+    border: 2px solid var(--dark-brown);
 }
 
 nav ul li:hover > ul {
     display: block;
-    opacity: 1; /* Полная видимость */
-    transform: translateY(0); /* Сдвиг вниз */
 }
 
 nav ul ul li {
-    display: block; /* Элементы списка отображаются как блоки */
-    margin: 0; /* Убираем внешние отступы */
-    padding: 10px 20px; /* Отступы внутри элементов */
-    font-family: "Mulish", serif; /* Шрифт для текста */
-    font-weight: medium; /* Начертание шрифта */
-    font-size: 20px; /* Размер шрифта */
-    color: #D9D9D9; /* Цвет текста */
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета текста */
-}
-
-nav ul ul li:hover {
-    background-color: #4C4E6E; /* Цвет фона при наведении */
-    border-radius: 5px; /* Скругленные углы при наведении */
+    margin: 0;
+    padding: 12px 0;
+    display: block;
+    text-align: center;
 }
 
 nav ul ul li a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #D9D9D9; /* Цвет текста ссылки */
-    display: block; /* Ссылка занимает всю ширину элемента */
+    color: var(--text-light);
+    font-size: 1.2rem;
+    width: 100%;
+    padding: 10px 25px;
+    box-sizing: border-box;
 }
 
 nav ul ul li:hover a {
-    color: white; /* Цвет текста ссылки при наведении */
+    color: var(--accent);
 }
 
-nav ul li:hover > ul {
-    display: block; /* Показываем подменю при наведении на элемент */
-}
-
-nav ul li:hover {
-    background-color: #2E3047; /* Цвет фона для пункта меню при наведении */
-    border-radius: 10px;
-}
-
-nav ul li a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: black; /* Цвет текста ссылки */
-    transition: background-color 0.3s, color 0.3s; /* Плавный переход для фона и цвета текста */
-    padding: 10px; /* Добавляем пространство вокруг текста */
-}
-
-nav ul li:hover > a {
-    background-color: transparent; /* Фон ссылки при наведении на элемент */
-    color: white; /* Цвет текста ссылки при наведении */
-    padding: 10px;
-}
-
-nav ul li:hover {
-    color: white; /* Цвет текста пункта меню при наведении */
-}
-
-nav a:hover {
-    color: white; /* Цвет текста при наведении на ссылку */
-    padding: 10px;
-}
-
+/* Social Icons */
 .no-hover {
-    width: 5px; /* Задает ширину изображения */
-    height: 5px; /* Задает высоту изображения */
-}
-
-.no-hover:hover {
-    background-color: transparent;
+    width: 40px;
+    height: 40px;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .no-hover img {
-    width: 33px; /* Задает ширину изображения */
-    height: 33px; /* Задает высоту изображения */
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
 }
 
-.logo {
-    pointer-events: none;
-    width: 50px; /* Задает ширину изображения */
-    height: 73px; /* Задает высоту изображения */
+.no-hover:hover img {
+    transform: scale(1.15);
 }
 
+/* Main Content */
+main {
+    flex: 1;
+    padding: 20px 0;
+}
+
+/* Footer Styles */
 footer {
-    display: flex; /* Устанавливаем флекс-контейнер */
-    justify-content: space-between; /* Разделяем контент и лого */
-    align-items: center; /* Выравниваем по центру по вертикали */
-    padding: 10px 20px; /* Добавляем отступы для футера, по необходимости */
-    background-color: #2E3047; /* Пример фона, можете настроить по своему усмотрению */
+    flex-shrink: 0;
+    background-color: var(--bg-dark);
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 2px solid var(--dark-brown);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .content a {
-    font-family: "Mulish", serif;
-    font-weight: SemiBold;
-    font-size: 26px;
-    color: #D9D9D9;
+    color: var(--text-light);
     text-decoration: none;
+    font-size: 1.3rem; /* Крупный шрифт */
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.content a:hover {
+    color: var(--accent);
 }
 
 .content p {
-    font-family: "Mulish", serif;
-    font-weight: SemiBold;
-    font-size: 18px;
-    color: #6F8A9F;
-    text-decoration: none;
-    padding: 0;
-    margin: 0;
+    color: var(--light-brown);
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 10px;
 }
 
 .logof {
-    width: 100px; /* Пример ширины логотипа, настройте под свои нужды */
-    height: 140px; /* Сохраняем пропорции изображения */
+    width: 110px;
+    height: auto;
 }
 
-@media (max-width: 1000px) {
-    footer {
-        padding-bottom: 10px; /* Adjust padding for smaller screens */
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    nav > ul > li {
+        margin: 0 20px;
     }
 
-    body {
-        overflow-x: hidden; /* Prevent accidental horizontal scrollbars */
+    nav ul li a {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    nav > ul > li {
+        margin: 0 15px;
+        font-size: 1.2rem;
+    }
+
+    .logo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .no-hover {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px 0;
+    }
+
+    nav > ul > li {
+        margin: 10px 0;
+    }
+
+    nav ul ul {
+        position: static;
+        transform: none;
+        margin-top: 15px;
+        width: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding: 30px 20px;
+    }
+
+    .logof {
+        margin-top: 20px;
+        order: -1; /* Логотип сверху */
+    }
+}
+
+@media (max-width: 480px) {
+    .logo img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .content a {
+        font-size: 1.1rem;
+    }
+
+    footer {
+        padding: 25px 15px;
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
     }
 }

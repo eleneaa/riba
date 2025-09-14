@@ -1,22 +1,48 @@
+/* Подключение шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;700&display=swap');
+
+/* Основные стили */
 body {
-    margin: 0; /* Убираем отступы у body */
+    font-family: 'Rubik', sans-serif;
+    font-weight: 300;
+    color: #D9D9D9;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
 }
 
+/* Фирменные цвета */
+:root {
+    --light-gray: #D9D9D9;
+    --dark-bg: #121212;
+    --dark-brown: #3C2C22;
+    --accent: #A44E18;
+    --light-brown: #B28B6B;
+}
+
+/* Общие стили заголовков */
+h1, h2, h3, h4 {
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* Шапка */
 .header {
+    position: relative;
+    height: 100vh;
+    max-height: 600px;
     display: flex;
-    align-items: center;
-    padding: 0px;
-    background-color: #D9D9D9;
-    margin-bottom: 20px;
+    overflow: hidden;
 }
 
 .image-container {
-    padding-left: 0;
-    margin-left: 0;
-    position: relative;
-    width: 60%;
-    height: 400px;
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
 }
 
 .image-container img {
@@ -25,475 +51,473 @@ body {
     object-fit: cover;
 }
 
-.image-container::after {
+/* Затемнение фона */
+.header::after {
     content: '';
     position: absolute;
     top: 0;
-    right: 0;
+    left: 50%;
     width: 50%;
     height: 100%;
-    background: linear-gradient(to right, rgba(217, 217, 217, 0), #D9D9D9);
-    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.85); /* Полупрозрачный темный фон */
+    z-index: 2;
 }
 
-.header h1 {
-    width: 50%;
-    padding-left: 20px;
-    padding-right: 50px;
-    color: #2E3047;
-
-}
-
-.header h1 {
-    font-family: "Mulish", serif;
-    font-weight: ExtraBold;
-    font-size: 32px; /* Уменьшаем размер шрифта */
-    top: 25%; /* Отодвигаем заголовок h1 от верхней границы контейнера */
-    width: 504px; /* Уменьшаем ширину */
-}
-
-.italic {
-    font-family: "Georgia", serif;
-    font-weight: 400;
-    font-size: 28px; /* Уменьшаем размер шрифта */
-    font-style: italic;
-    top: 45%; /* Отодвигаем заголовок h2 ниже h1 */
-    margin: 0;
-}
-
-.advantages {
-    width: 972px; /* Уменьшаем ширину секции */
-    margin: 60px auto;
-    display: flex; /* Используем flexbox для горизонтального расположения */
-    justify-content: space-between; /* Распределяем пространство между элементами */
-    align-items: flex-start; /* Выравниваем элементы по вертикали */
-    flex-wrap: wrap; /* Позволяет элементам переходить на новую строку при сужении экрана */
-}
-
-.advantages h2{
-    flex: 1; /* Позволяем заголовкам занимать одинаковое пространство */
-    text-align: center; /* Центрируем текст заголовков */
-    margin: 0; /* Убираем внешние отступы */
-    color: #2E3047;
-    font-family: "Georgia", serif;
-    font-weight: 700;
-    font-size: 38px; /* Уменьшаем размер шрифта заголовков */
-    font-style: italic; /* Сохранение стиля */
-}
-
-.advantages p{
-    width: 216px; /* Уменьшаем ширину параграфов */
-    flex: 1; /* Позволяем параграфам занимать одинаковое пространство */
-    text-align: center; /* Центрируем текст параграфов */
-    margin: 0; /* Убираем внешние отступы */
-    color: #2E3047;
-    font-family: "Mulish", serif;
-    font-weight: 400;
-    font-size: 20px; /* Уменьшаем размер шрифта параграфов */
-}
-
-/* Основные стили секции */
-.services {
-    margin: 0;
-    padding: 0; /* Отступы вокруг секции */
-    text-align: left; /* Центрируем текст внутри секции */
-}
-
-/* Заголовок секции */
-.services h2 {
-    padding-left: 50px;
-    color: #2E3047;
-    font-family: "Mulish", serif;
-    font-weight: ExtraBold;
-    font-size: 36px; /* Размер шрифта заголовка */
-    margin-bottom: 20px; /* Отступ снизу */
-
-}
-
-/* Параграф секции */
-.services p {
-    padding: 0 50px;
-    font-family: "Mulish", serif;
-    font-weight: Medium;
-    font-size: 20px; /* Размер шрифта параграфа */
-    margin-bottom: 40px; /* Отступ снизу */
-    color: #2E3047; /* Цвет текста */
-}
-
-/* Контейнер для карточек услуг */
-.services_container {
-    display: flex; /* Используем flexbox для размещения карточек */
-    justify-content: center; /* Центрируем карточки по главной оси */
-    flex-wrap: wrap; /* Позволяем карточкам переноситься на следующую строку */
-    gap: 20px; /* Пробел между карточками */
-}
-
-/* Стили для карточек услуг */
-.service_card {
+.header-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    padding: 0 5%;
     display: flex;
-    flex-direction: column; /* Расположение элементов внутри карточки вертикально */
-    align-items: left; /* Центрируем содержимое карточки */
-    justify-content: space-between; /* Распределяем пространство между элементами карточки */
-    width: 270px; /* Ширина карточки, можно адаптировать */
-    border-radius: 40px; /* Скругленные углы */
-    padding: 0; /* Отступы внутри карточки */
-    position: relative; /* Для настройки позиционирования дочерних элементов */
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end; /* Выравнивание по правому краю */
+    text-align: left; /* Текст по правому краю */
+    margin-top: 50px;
 }
 
-.service_card.active {
-    z-index: 1; /* Поднимаем карточку */
+.header h1 {
+    color: #D9D9D9;
+    font-size: 36px;
+    max-width: 800px;
+    line-height: 1.3;
+    letter-spacing: 1px;
+    margin: 0;
+    padding: 20px 0;
 }
 
-/* Эффект уменьшения для остальных карточек */
-.service_card:not(.active) {
-    transform: scale(0.95); /* Уменьшаем неактивные карточки */
+.header .italic {
+    font-size: 32px;
+    font-weight: 300;
+    display: block;
+    margin-top: 20px;
+}
+/* Преимущества */
+.advantages {
+    background-color: #121212;
+    padding: 60px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Эффект уменьшения для остальных карточек */
-.service_card.inactive {
-    transform: scale(0.75); /* Уменьшаем неактивные карточки */
+.advantages > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100%;
 }
 
-/* Стили для каждой карточки с уникальными фоновыми цветами */
-.service_card.boiler {
-    background-color: #556877; /* Цвет фона для монтаж котельного оборудования */
-    width: 673px;
+.advantages h2 {
+    font-size: 48px;
+    margin-bottom: 0px;
+    color: var(--accent); /* #A44E18 */
 }
 
-.service_card.radiator {
-    background-color: #A4887C; /* Цвет фона для радиаторного отопления */
-    width: 484px;
+.advantages p {
+    font-size: 24px;
+    max-width: 250px;
+    font-weight: 300;
+    color: #D9D9D9;
 }
 
-.service_card.water {
-    background-color: #2E3047; /* Цвет фона для внутреннего водоснабжения */
-    width: 589px;
+@media (min-width: 768px) {
+    .advantages {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 80px 0;
+    }
+
+    .advantages > div {
+        margin-bottom: 0;
+    }
 }
 
-.service_card.floor {
-    background-color: #757C80; /* Цвет фона для водяного теплого пола */
-    width: 578px;
+/* Услуги - улучшенные стили */
+.services {
+    padding: 100px 0;
+    background-color: #121212;
 }
 
-/* Стили для заголовков карточек */
+/* Обновленные стили для карточек услуг */
+.services_container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service_card {
+    position: relative;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+    border: 1px solid #333;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.image-wrapper {
+    flex: 1;
+    overflow: hidden;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Полностью переработанные стили для точного центрирования */
+.card-content {
+    padding: 25px;
+    background: rgba(18, 18, 18, 0.95);
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрирование по горизонтали */
+    justify-content: center; /* Центрирование по вертикали */
+    text-align: center; /* Центрирование текста */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    width: 100%; /* Занимаем всю ширину карточки */
+}
+
 .service_card h3 {
     color: #D9D9D9;
-    align-text: left;
-    font-family: "Mulish", serif;
-    font-weight: Bold;
-    font-size: 32px; /* Размер шрифта заголовка карточки */
-    margin: 20px 0 0 20px;
-    width: 70%;
+    font-size: 20px;
+    margin: 0 0 15px 0;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    width: 100%; /* Занимаем всю доступную ширину */
+    padding: 0 5px; /* Минимальные отступы */
+    box-sizing: border-box;
+    text-align: center;
 }
 
-/* Стили для ссылок "Подробнее" */
 .service_link {
-    align-text: right;
-    color: #2E3047;
-    background-color: #D9D9D9; /* Цвет текста ссылки */
-    text-decoration: none; /* Убираем подчеркивание */
-    margin: 10px 0 0 20px; /* Отступ сверху для ссылки */
-    font-family: "Mulish", serif;
-    font-weight: Bold;
-    font-size: 24px;
-    border-radius: 40px;
-    padding: 10px;
-    width: auto;
-    max-width: 140px;
-}
-
-/* Эффект наведения на ссылки */
-.service_link:hover {
-    text-decoration: underline; /* Подчеркиваем текст при наведении */
-}
-
-/* Стили для изображений внутри карточек */
-.service_card img {
-    width: 100%; /* Задаем ширину изображения 100% от родительской карточки */
-    height: auto; /* Высота будет автоматической */
-    border-radius: 0 0 40px 40px; /* Скругление углов изображений */
-    margin-top: 10px; /* Отступ сверху для изображения */
-    object-fit: cover; /* Обрезаем изображение, сохраняя пропорции */
-    max-height: 200px; /* Ограничиваем максимальную высоту изображения, можно устанавливать по вашему усмотрению */
-}
-
-
-.gallery-container {
-    margin-bottom: 50px;
-    display: flex;
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
-    overflow: hidden; /* Убираем полосы прокрутки */
-}
-
-.image-title {
-    position: absolute; /* Абсолютное позиционирование */
-    bottom: 10px; /* Отступ от нижней части изображения */
-    left: 50%; /* Центрируем по горизонтали */
-    transform: translateX(-50%); /* Центрируем текст */
-    color: white; /* Цвет текста */
-    padding: 5px 10px; /* Отступ вокруг текста */
-    border-radius: 5px; /* Закругленные углы фона */
-    font-family: "Mulish", serif;
-    font-weight: SemiBold;
-    font-size: 24px; /* Размер шрифта */
-    text-align: center; /* Центрируем текст внутри блока */
-    z-index: 5; /* Убедитесь, что текст выше изображения */
-}
-
-.gallery {
-    position: relative; /* Позволяет абсолютному позиционированию стрелок */
-    width: 776px; /* Ширина основного изображения */
-    height: 533px; /* Высота основного изображения */
-    display: flex; /* Используем flexbox для выравнивания */
-    justify-content: center; /* Центрируем элементы по горизонтали */
-    align-items: center; /* Центрируем элементы по вертикали */
-}
-
-/* Стиль для основного изображения */
-#currentImage {
-    width: 776px; /* Ширина основного изображения */
-    height: 533px; /* Высота основного изображения */
-    object-fit: cover; /* Обрезаем изображение, чтобы вписать в размеры контейнера */
-    z-index: 1; /* Основное изображение на переднем плане */
-}
-
-/* Полосы размытых изображений */
-.blurred-image {
-    position: absolute; /* Абсолютное позиционирование для боковых изображений */
-    top: 0; /* Верхнее выравнивание */
-    width: calc(100% + 100px); /* Увеличенная ширина для эффекта размытости */
-    height: 100%; /* Высота 100% от родителя */
-    filter: blur(5px) saturate(0.1); /* Применяем размытие */
-    object-fit: cover; /* Обеспечиваем корректное вписывание изображений */
-    z-index: 0; /* Размытие на заднем плане */
-}
-
-/* Расположение размытых изображений */
-.previous {
-    left: -120%; /* Смещение влево, чтобы было видно слева */
-}
-
-.next {
-    right: -120%; /* Смещение вправо, чтобы было видно справа */
-}
-
-.arrow {
-    position: absolute; /* Абсолютное позиционирование */
-    top: 90%; /* Устанавливаем по центру по вертикали */
-    transform: translateY(-50%); /* Центрируем по вертикали */
-    background-color: transparent; /* Прозрачный фон */
-    border: 4px solid white; /* Белая обводка */
-    border-radius: 50%; /* Делаем кнопки круглыми */
-    width: 40px; /* Ширина кнопок */
-    height: 40px; /* Высота кнопок */
-    display: flex; /* Flexbox для центрирования содержимого */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
-    cursor: pointer; /* Изменение курсора на указатель */
-    color: white;
-    z-index: 10; /* Помещаем стрелки на передний план */
-}
-
-.left-arrow {
-    left: 15px; /* Смещаем на 10 пикселей от левого края */
-}
-
-.right-arrow {
-    right: 15px; /* Смещаем на 10 пикселей от правого края */
-}
-
-.works h2 {
-    padding-left: 50px;
-    color: #2E3047;
-    font-family: "Mulish", serif;
-    font-weight: ExtraBold;
-    font-size: 36px;
-    margin-bottom: 20px;
-}
-
-.call-me-please{
-    padding: 20px 20px;
-    margin: 40px 0;
-
-}
-
-.text {
-    padding: 30px 50px;
-    background-color: #2E3047;
-    border-radius: 40px;
-}
-
-.call-me-please h2 {
-
-    margin-right: 500px;
+    display: block; /* Изменяем на block для лучшего контроля */
+    background-color: var(--accent);
     color: #D9D9D9;
-    font-family: "Georgia", serif;
-    font-weight: 700;
-    font-size: 46px; /* Уменьшаем размер шрифта заголовков */
-    font-style: italic;
-}
-
-.call-me-please p {
-
-    margin-right: 500px;
-    color: #D9D9D9;
-    font-family: "Mulish", serif;
-    font-weight: Medium;
-    font-size: 24px;
-    margin-bottom: 0;
-}
-
-.contact-links {
-    padding-left: 50px;
-    margin-right: 500px;
-    display: flex; /* Используем Flexbox */
-    align-items: center; /* Выравниваем элементы по вертикали по центру */
-    gap: 10px; /* Отступ между элементами */
-}
-
-.tel {
-    color: #D9D9D9;
-    background-color: #2E3047;
-    border-radius: 29px;
-    font-family: "Mulish", serif;
-    font-weight: SemiBold;
-    font-size: 30px;
+    padding: 12px 30px;
+    border-radius: 30px;
     text-decoration: none;
-    padding: 10px; /* Добавляем отступы для лучшего визуального восприятия */
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    text-align: center;
+    width: fit-content; /* Ширина по содержимому */
+    margin: 0 auto; /* Автоматические отступы по бокам */
 }
 
-.contact-links img {
-    width: 40px; /* Устанавливаем размер иконок */
-    height: 40px;
+.service_link:hover {
+    background-color: #8C3E14;
 }
 
-/* Медиа-запрос для планшетов (ширина экрана до 1024px) */
-@media (max-width: 1024px) {
+/* Анимации при наведении */
+.service_card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 12px 40px rgba(164, 78, 24, 0.3);
+    border-color: var(--accent);
+}
 
+.service_card:hover .image-wrapper img {
+    transform: scale(1.05);
+}
 
-    .advantages {
-        width: 90%; /* Уменьшаем ширину секции */
-        margin: 30px auto; /* Уменьшаем отступы */
-    }
-
-    .advantages h2 {
-        font-size: 32px; /* Уменьшаем размер шрифта */
-    }
-
-    .advantages p {
-        font-size: 18px; /* Уменьшаем размер шрифта */
-    }
-
-    .services p {
-        font-size: 10px;
-    }
-
-    .services h2 {
-        font-size: 18px;
-    }
-
+/* Адаптивность */
+@media (max-width: 768px) {
     .services_container {
-        flex-direction: column; /* Карточки располагаются вертикально */
-        align-items: center; /* Центрируем карточки */
+        grid-template-columns: 1fr;
     }
 
     .service_card {
-        width: 90%; /* Карточки занимают 90% ширины */
-        margin-bottom: 20px; /* Отступ между карточками */
+        height: 450px;
     }
 
-    .service_card.boiler,
-    .service_card.radiator,
-    .service_card.water,
-    .service_card.floor {
-        width: 70%; /* Все карточки одинаковой ширины */
-    }
-
-    #currentImage {
-        width: 100%; /* Основное изображение занимает всю ширину */
-        height: auto; /* Высота автоматическая */
-    }
-
-    .call-me-please {
-        margin-right: 20px; /* Уменьшаем отступ справа */
-    }
-
-    .text {
-        padding: 20px; /* Уменьшаем отступы внутри текстового блока */
-    }
-
-    .call-me-please h2 {
-        margin-right: 0; /* Убираем отступ справа */
-        font-size: 36px; /* Уменьшаем размер шрифта */
-    }
-
-    .call-me-please p {
-        margin-right: 0; /* Убираем отступ справа */
-        font-size: 14px; /* Уменьшаем размер шрифта */
-    }
-
-    .contact-links {
-        margin-right: 0; /* Убираем отступ справа */
-        padding-left: 20px; /* Уменьшаем отступ слева */
-    }
-
-    .tel {
-        font-size: 36px; /* Уменьшаем размер шрифта */
-    }
-
-}
-
-/* Медиа-запрос для телефонов (ширина экрана до 768px) */
-@media (max-width: 768px) {
-    .header h1 {
-        font-size: 24px; /* Уменьшаем размер шрифта */
-    }
-
-    .italic {
-        font-size: 20px; /* Уменьшаем размер шрифта */
-    }
-
-    .advantages h2 {
-        font-size: 28px; /* Уменьшаем размер шрифта */
-    }
-
-    .advantages p {
-        font-size: 16px; /* Уменьшаем размер шрифта */
-    }
-
-    .services h2 {
-        font-size: 28px; /* Уменьшаем размер шрифта */
-    }
-
-    .services p {
-        font-size: 18px; /* Уменьшаем размер шрифта */
+    .card-content {
+        padding: 20px;
     }
 
     .service_card h3 {
-        font-size: 24px; /* Уменьшаем размер шрифта */
-    }
-
-    .service_link {
-        font-size: 20px; /* Уменьшаем размер шрифта */
-    }
-
-
-    .call-me-please h2 {
-        font-size: 28px; /* Уменьшаем размер шрифта */
-    }
-
-    .call-me-please p {
-        font-size: 18px; /* Уменьшаем размер шрифта */
-    }
-
-    .tel {
-        font-size: 20px; /* Уменьшаем размер шрифта */
-    }
-
-    .contact-links img {
-        width: 25px; /* Уменьшаем размер иконок */
-        height: 25px;
+        font-size: 1.4rem;
     }
 }
 
+@media (max-width: 480px) {
+    .service_card {
+        height: 400px;
+    }
+
+    .service_card h3 {
+        font-size: 1.3rem;
+    }
+
+    .service_link {
+        padding: 10px 25px;
+        font-size: 0.8rem;
+    }
+}
+/* Контакты */
+.call-me-please {
+    background-color: #1A1A1A;
+    padding: 60px 20px;
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+}
+
+.call-me-please .text {
+    max-width: 900px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.call-me-please h2 {
+    font-size: 36px;
+    margin-bottom: 25px;
+    color: var(--accent);
+    letter-spacing: 1px;
+}
+
+.call-me-please p {
+    font-size: 24px;
+    line-height: 1.6;
+    color: #D9D9D9;
+    margin-bottom: 20px;
+}
+
+/* Контейнер для контактов */
+.contact-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Стили для телефона */
+.tel {
+    color: var(--accent);
+    font-size: 36px;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+/* Контейнер для иконок */
+.social-icons {
+    display: flex;
+    gap: 25px;
+}
+
+.social-icons img {
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s;
+}
+
+.social-icons img:hover {
+    transform: scale(1.1);
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .call-me-please h2 {
+        font-size: 30px;
+    }
+
+    .call-me-please p {
+        font-size: 20px;
+    }
+
+    .tel {
+        font-size: 28px;
+    }
+
+    .social-icons img {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-links {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .tel {
+        font-size: 24px;
+    }
+
+    .social-icons {
+        gap: 20px;
+    }
+}
+
+/* Галерея */
+.works {
+    padding: 80px 0;
+    background-color: #121212;
+}
+
+.works h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: #D9D9D9;
+    letter-spacing: 1px;
+}
+
+.gallery-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.gallery {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid #333;
+}
+
+.gallery img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease;
+}
+
+#currentImage {
+    z-index: 2;
+    opacity: 1;
+}
+
+.blurred-image {
+    filter: blur(5px);
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.previous {
+    left: -80%;
+}
+
+.next {
+    left: 80%;
+}
+
+.image-title {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    z-index: 3;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(164, 78, 24, 0.5);
+    color: white;
+    border: none;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 4;
+    transition: background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow:hover {
+    background: rgba(164, 78, 24, 0.9);
+}
+
+.left-arrow {
+    left: 20px;
+}
+
+.right-arrow {
+    right: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 992px) {
+    .header h1 {
+        font-size: 2.2rem;
+        margin-left: 5%;
+    }
+
+    .service_card {
+        height: 350px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.8rem;
+        padding: 0 20px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .header .italic {
+        margin-top: 15px;
+    }
+
+    .services_container {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery {
+        height: 400px;
+    }
+}
+
+@media (max-width: 576px) {
+    .advantages h2 {
+        font-size: 2.8rem;
+    }
+
+    .service_card h3 {
+        font-size: 1.5rem;
+        bottom: 60px;
+    }
+
+    .service_link {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+    }
+
+    .gallery {
+        height: 300px;
+    }
+}

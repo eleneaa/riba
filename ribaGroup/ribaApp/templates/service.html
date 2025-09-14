@@ -6,13 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{ service.name }}</h1>
-
 <section class="header">
-    <div class="image-container">
+    <div class="header-image">
         <img src="{{ service.main_photo.url }}" alt="{{ service.name }}">
     </div>
-    <p>{{ service.description }}</p>
+    <div class="header-content">
+        <h1>{{ service.name }}</h1>
+        <p>{{ service.description }}</p>
+    </div>
 </section>
 
 <section class="advantages">
