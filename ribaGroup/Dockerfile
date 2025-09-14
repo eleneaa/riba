@@ -1,20 +1,12 @@
-FROM python:3.9-alpine
+FROM python:3.11-slim
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+WORKDIR /app
 
-WORKDIR /ribaGroup
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apk --update add \
-    gcc libc-dev libffi-dev jpeg-dev zlib-dev libjpeg \
-    && pip install --upgrade pip
+COPY . .
 
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
+RUN chmod +x /entrypoint.sh
 
-COPY . ./
-
-RUN python manage.py collectstatic --noinput
-
-RUN chmod +x entrypoint.sh
-ENTRYPOINT ["/ribaGroup/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
